@@ -78,7 +78,7 @@
                 &kp Q         &kp W         &kp F          &kp P           &kp B       &kp K      &kp L          &kp U          &kp Y         &kp QUOT
                 &hml LGUI A   &hml LALT R   &hml LCTRL S   &hml LSHFT T    &kp G       &kp M      &hmr LSHFT N   &hmr LCTRL E   &hmr LALT I   &hmr LGUI O   
                               &kp X         &kp C          &kp D                                  &kp H          &kp COMMA      &kp DOT
-                &lt NAV_L ESC &lt NUM_L SPACE              &lt SEL_L RET    &kp BKS
+                &lt NAV_L ESC &lt NUM_L SPACE              &lt SEL_L RET    &kp BKSP
                 >;
         };
         navigate_layer {
