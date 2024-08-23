@@ -1,0 +1,6 @@
+if SHIELD_TYCHE
+      
+config ZMK_KEYBOARD_NAME  
+    default "tyche"
+
+endif
