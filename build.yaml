@@ -18,5 +18,5 @@
 #
 ---
 include:
-  - board: adafruit_qt_py_rp2040
-    shield: hummingbird
+  - board: seeeduino_xiao_rp2040
+    shield: tyche
