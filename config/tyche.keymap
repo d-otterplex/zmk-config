@@ -113,7 +113,7 @@
                 &kp Q &kp W &kp E &kp R &kp GRAVE       &kp O &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp RETURN
                 &kp LCTRL &kp N1 &kp N2 &kp N3 &kp N4   &kp N5 &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_N0
                           &kp J &kp I &kp C                    &kp KP_N1 &kp KP_N2 &kp KP_N3
-                &lt DTWO_L X &kp LSHIFT &to GAME_L &to BAS_L
+                &lt DTWO_L X &kp LSHIFT &kp ESC &to BAS_L
                 >;
         };
 
