@@ -80,4 +80,18 @@
 			;
 
 	};
+
+	encoder_evqwgd: encoder_evqwgd {
+        compatible = "alps,ec11";
+        a-gpios = <&xiao_d 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&xiao_d 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <30>;
+        status = "okay";
+    };
+
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&encoder_evqwgd>;
+        triggers-per-rotation = <15>;
+    };
 };
