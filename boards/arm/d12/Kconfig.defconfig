@@ -1,0 +1,29 @@
+if BOARD_D12_LEFT
+
+config ZMK_KEYBOARD_NAME
+    default "d12"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif # BOARD_D12_LEF
+
+config ZMK_USB
+    default y
+
+endif
+
+
+if BOARD_D12_LEFT || BOARD_D12_RIGHT
+
+config ZMK_SPLIT
+    default y
+
+config ZMK_SPLIT_SERIAL
+	default y
+
+config SERIAL
+    default y
+
+endif
+
