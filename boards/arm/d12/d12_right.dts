@@ -1,5 +1,5 @@
 #include "d12.dtsi"
 
 &default_transform { // Offset of 3 because the left side has 3 columns
-col-offset = <4>;
+    row-offset = <1>;
 };
