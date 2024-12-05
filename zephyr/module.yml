@@ -1,3 +1,5 @@
 build:
+  depends:
+    - hal_atmel
   settings:
     board_root: .
