@@ -24,7 +24,7 @@
 		zmk,split-uart = &sercom0;
 	};
 
-	kscan_direct: kscan {
+	kscan: kscan {
 		compatible = "zmk,kscan-gpio-direct";
 		input-gpios
 			= <&porta 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
@@ -42,7 +42,7 @@
 			;
 	};
 
-	default_transform: keymap_transform_0 {
+	default_transform: default_transform {
 		compatible = "zmk,matrix-transform";
 		columns = <8>;
 		rows = <3>;

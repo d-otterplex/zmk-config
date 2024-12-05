@@ -12,7 +12,7 @@
 				 <PA24G_USB_DM>;
 		};
 	};
-	sercom0_uart_default : sercom0_uart_default {
+	sercom0_uart_default: sercom0_uart_default {
 		group1 {
 			pinmux = <PA4D_SERCOM0_PAD0>,
 				<PA6D_SERCOM0_PAD2>;
