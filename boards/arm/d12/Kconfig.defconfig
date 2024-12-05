@@ -6,8 +6,6 @@ config ZMK_KEYBOARD_NAME
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
 
-endif # BOARD_D12_LEF
-
 config ZMK_USB
     default y
 
