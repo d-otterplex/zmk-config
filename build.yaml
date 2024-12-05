@@ -18,5 +18,4 @@
 #
 ---
 include:
-  - board: adafruit_qt_py_rp2040
-    shield: hummingbird
+  - board: ['d12_left', 'd12_right']
