@@ -18,4 +18,5 @@
 #
 ---
 include:
-  - board: [ "d12_left", "d12_right" ]
+  - board: d12_left
+  - board: d12_right
