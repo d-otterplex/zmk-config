@@ -15,4 +15,4 @@ CONFIG_BUILD_OUTPUT_UF2=y
 # Turn on logging, and set ZMK logging to debug output
 # CONFIG_ZMK_USB_LOGGING=y
 # Delay logging process to catch issues that happen near keyboard boot
-CONFIG_LOG_PROCESS_THREAD_STARTUP_DELAY_MS=8000
+# CONFIG_LOG_PROCESS_THREAD_STARTUP_DELAY_MS=8000
