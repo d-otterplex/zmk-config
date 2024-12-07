@@ -23,5 +23,8 @@ config ZMK_SPLIT_SERIAL
 config SERIAL
     default y
 
+config ZMK_KSCAN_DIRECT_POLLING
+    default y
+
 endif
 
