@@ -6,7 +6,6 @@
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/mouse.h>
 
 #define AS(keycode) &as LS(keycode) keycode     // Autoshift Macro
 #define ASI(keycode) &as keycode LS(keycode)     // Autoshift Macro inverted
@@ -85,7 +84,7 @@
         tween_navigation_layer {
             bindings = <
                  &kp LEFT       &kp DOWN       &kp UP       &kp RIGHT      &kp LSHFT &kp LCTRL &kp LALT &kp LGUI
-                &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &kp HOME  &kp PG_UP &kp PG_DN &kp END
+                 &kp HOME  &kp PG_UP &kp PG_DN &kp END &none &none &none &none
                 &none &none &none &none &none &none &none &trans
                 >;
         };
@@ -126,7 +125,7 @@
             bindings = <
                 &kp Q &kp W &kp E &kp R &kp O &kp P &kp H &kp RET
                 &kp LCTRL &kp I &kp X &kp C &kp Z &kp J &kp KP_N0 &kp KP_N3
-                &none &none &lt GNUM_TW_L ESC &kp LSHFT &none &none &to GAME_L &to BAS_TW_L
+                &none &none &lt GNUM_TW_L ESC &kp LSHFT &none &none &to GONE_TW_L &to BAS_TW_L
                 >;
             // IWC
         };
@@ -151,8 +150,8 @@
         compatible = "zmk,combos";
 
         combo_tw_w         { timeout-ms = <50>; key-positions = <0 1>; bindings = <&kp W>; layers = <BAS_TW_L>; };
-        combo_tw_g         { timeout-ms = <50>; key-positions = <1 2>; bindings = <&kp G>; layers = <BAS_TW_L GONE_TW_L>; };
-        combo_tw_b         { timeout-ms = <50>; key-positions = <2 3>; bindings = <&kp B>; layers = <BAS_TW_L GONE_TW_L>; };
+        combo_tw_g         { timeout-ms = <50>; key-positions = <1 2>; bindings = <&kp G>; layers = <BAS_TW_L>; };
+        combo_tw_b         { timeout-ms = <50>; key-positions = <2 3>; bindings = <&kp B>; layers = <BAS_TW_L>; };
         combo_tw_j         { timeout-ms = <50>; key-positions = <4 5>; bindings = <&kp J>; layers = <BAS_TW_L>; };
         combo_tw_l         { timeout-ms = <50>; key-positions = <5 6>; bindings = <&kp L>; layers = <BAS_TW_L>; };
         combo_tw_m         { timeout-ms = <50>; key-positions = <6 7>; bindings = <&kp M>; layers = <BAS_TW_L>; };
@@ -186,10 +185,11 @@
         combo_tw_capsword  { timeout-ms = <50>; key-positions = <3 4>; bindings = <&caps_word>; layers = <BAS_TW_L>; };
         combo_tw_back_word { timeout-ms = <50>; key-positions = <0 3>; bindings = <&kp LC(BKSP)>; layers = <BAS_TW_L>; };
 
-        combo_tw_game_esc  { timeout-ms = <50>; key-positions = <>; bindings = <&kp ESC>; layers = <GONE_TW_L>; };
-        combo_tw_game_lctl { timeout-ms = <50>; key-positions = <>; bindings = <&kp LCTRL>; layers = <GONE_TW_L>; };
-        combo_tw_game_lalt { timeout-ms = <50>; key-positions = <>; bindings = <&kp LALT>; layers = <GONE_TW_L>; };
-        combo_tw_game_fshr { timeout-ms = <50>; key-positions = <>; bindings = <&ght F R>; layers = <GONE_TW_L>; };
+        combo_tw_game_esc  { timeout-ms = <50>; key-positions = <0 1>; bindings = <&kp ESC>; layers = <GONE_TW_L>; };
+        combo_tw_game_lctl { timeout-ms = <50>; key-positions = <18 19>; bindings = <&kp LCTRL>; layers = <GONE_TW_L>; };
+        combo_tw_game_lalt { timeout-ms = <50>; key-positions = <11 19>; bindings = <&kp LALT>; layers = <GONE_TW_L>; };
+        combo_tw_game_f    { timeout-ms = <50>; key-positions = <3 11>; bindings = <&kp F>; layers = <GONE_TW_L>; };
+        combo_tw_game_r    { timeout-ms = <50>; key-positions = <2 3>; bindings = <&kp R>; layers = <GONE_TW_L>; };
     };
 
 /*

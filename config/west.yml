@@ -7,7 +7,7 @@ manifest:
   projects:
     - name: zmk
       remote: xudongzheng
-      revision: main
+      revision: split-serial-pr
       import: app/west.yml
   self:
     path: config
