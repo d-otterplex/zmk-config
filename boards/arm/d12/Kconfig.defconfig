@@ -26,5 +26,10 @@ config SERIAL
 config ZMK_KSCAN_DIRECT_POLLING
     default y
 
+config UART_INTERRUPT_DRIVEN
+    default y
+
+config UART_LINE_CTRL
+    default y
 endif
 
