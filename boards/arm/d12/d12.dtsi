@@ -21,7 +21,43 @@
 		zmk,kscan = &kscan;//&kscan_matrix;
 		zmk,matrix-transform = &default_transform;
 		zmk,split-uart = &sercom0;
+        zephyr,boot-mode = &boot_retention;
+		zmk,magic-boot-mode = &magic_retention;
 	};
+
+        sram@20007FFC {
+                compatible = "zephyr,memory-region", "mmio-sram";
+                reg = <0x20007FFC 0x4>;
+                zephyr,memory-region = "RetainedMem";
+                status = "okay";
+
+                retainedmem {
+                        compatible = "zephyr,retained-ram";
+                        status = "okay";
+                        #address-cells = <1>;
+                        #size-cells = <1>;
+
+                        magic_retention: retention@0 {
+                                compatible = "zephyr,retention";
+                                status = "okay";
+                                reg = <0x0 0x4>;
+                        };
+                };
+        };
+
+        magic_mapper {
+                compatible = "zmk,bootmode-to-magic-mapper";
+                status = "okay";
+
+                #address-cells = <1>;
+                #size-cells = <1>;
+
+                boot_retention: retention@0 {
+                        compatible = "zephyr,retention";
+                        status = "okay";
+                        reg = <0x0 0x1>;
+                };
+        };
 
 	kscan: kscan {
 		compatible = "zmk,kscan-gpio-direct";
@@ -101,4 +137,8 @@ zephyr_udc0: &usb0 {
 			reg = <0x0003c000 DT_SIZE_K(16)>;
 		};
 	};
+};
+
+&sram0 {
+        reg = <0x20000000 0x7FFC>;
 };

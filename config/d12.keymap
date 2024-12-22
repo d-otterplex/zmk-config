@@ -150,7 +150,7 @@
         compatible = "zmk,combos";
 
         combo_tw_w         { timeout-ms = <50>; key-positions = <0 1>; bindings = <&kp W>; layers = <BAS_TW_L>; };
-        combo_tw_g         { timeout-ms = <50>; key-positions = <1 2>; bindings = <&kp G>; layers = <BAS_TW_L>; };
+        combo_tw_g         { timeout-ms = <50>; key-positions = <1 2>; bindings = <&kp G>; layers = <BAS_TW_L GONE_TW_L>; };
         combo_tw_b         { timeout-ms = <50>; key-positions = <2 3>; bindings = <&kp B>; layers = <BAS_TW_L>; };
         combo_tw_j         { timeout-ms = <50>; key-positions = <4 5>; bindings = <&kp J>; layers = <BAS_TW_L>; };
         combo_tw_l         { timeout-ms = <50>; key-positions = <5 6>; bindings = <&kp L>; layers = <BAS_TW_L>; };
