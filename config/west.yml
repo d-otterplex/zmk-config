@@ -1,13 +1,13 @@
 manifest:
   remotes:
-    - name: xudongzheng
-      url-base: https://github.com/xudongzheng
+    - name: otters
+      url-base: https://github.com/d-otterplex
     # Additional modules containing boards/shields/custom code can be listed here as well
     # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
   projects:
     - name: zmk
-      remote: xudongzheng
-      revision: split-serial-pr
+      remote: otters
+      revision: main
       import: app/west.yml
   self:
     path: config
