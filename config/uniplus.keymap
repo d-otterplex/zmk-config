@@ -15,8 +15,9 @@
 #define NUM_L 2
 #define SEL_L 3
 #define GONE_L 4
-#define DONE_L 5
-#define ENUM_L 6
+#define GTWO_L 5
+#define DONE_L 6
+#define ENUM_L 7
 
 
 /*
@@ -125,11 +126,21 @@
             bindings = <
                 &kp N1 &kp N2 &kp N3 &kp N4 &kp N5 &none &none &kp UP &none &none
                 &kp TAB &kp Q &kp W &kp E    &none &none &kp LEFT &kp DOWN &kp RIGHT &none
-                &kp LSHFT &kp A &kp S &kp D  &none &none &none &none &none &none
+                &kp LSHFT &kp A &kp S &kp D  &none &none &none &none &none &to GTWO_L
                 &none
                 &kp LCTL &kp SPACE &to BAS_L
                 >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+
+        gaming_noncomb_layer {
+            bindings = <
+                &kp TAB    &kp Q &kp W &kp E &kp R &kp T &none &kp UP &none &none
+                &kp LSHIFT &kp A &kp S &kp D &kp F &kp G &kp LEFT &kp DOWN &kp RIGHT &none
+                &kp ESC    &kp Z &kp X &kp C &kp V &kp B &none &none &none &to GONE_L
+                &none
+                &kp LCTL &kp SPACE &to BAS_L
+                >;
         };
 
         diablo_layer {
