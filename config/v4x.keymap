@@ -89,7 +89,7 @@
                 &kp Q         &kp W         &kp F          &kp P           &kp B       &kp J      &kp L          &kp U          &kp Y         &kp QUOT
                 &hml LGUI A   &hml LALT R   &hml LCTRL S   &hml LSHFT T    &kp G       &kp M      &hmr LSHFT N   &hmr LCTRL E   &hmr LALT I   &hmr LGUI O
                 &kp Z         &kp X         &kp C          &kp D           &kp V       &kp K      &kp H          &kp COMMA      &kp DOT       &kp FSLH
-                &lt NUM_L ESC  &lt NAV_L SPACE &kp BKSP        &none    &none
+                &none &lt NUM_L ESC  &lt NAV_L SPACE &kp BKSP        &none
                 >;
         };
         navigate_layer {
@@ -98,7 +98,7 @@
                 &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &kp HOME     &kp PG_UP    &kp C_MUTE  &kp C_VOL_DN &kp C_VOL_UP &none
                 &kp LEFT       &kp DOWN       &kp UP       &kp RIGHT       &none        &kp CAPS     &kp LSHFT   &kp LCTRL    &kp LALT     &kp LGUI
                 &msc SCRL_LEFT &msc SCRL_DOWN &msc SCRL_UP &msc SCRL_RIGHT &kp END      &kp PG_DN    &mkp LCLK &mkp MCLK &mkp RCLK &caps_word
-                                              &trans       &trans          &mkp LCLK &mkp MCLK &mkp RCLK
+                                              &trans       &trans          &trans &mkp LCLK &mkp RCLK
                 >;
         };
 
@@ -128,7 +128,7 @@
                 &kp N1 &kp N2 &kp N3 &kp N4 &kp N5 &none &none &kp UP &none &none
                 &kp TAB &kp Q &kp W &kp E &none &none &kp LEFT &kp DOWN &kp RIGHT &none
                 &kp LSHFT &kp A &kp S &kp D &none &none &none &none &none &to NCOM_L
-                &kp LCTL &kp SPACE &none &none &to BAS_L
+                &none &kp LCTL &kp SPACE &none &to BAS_L
                 >;
         };
 
@@ -138,7 +138,7 @@
                 &kp TAB    &kp Q &kp W &kp E &kp R &kp T &none &kp UP &none &to GONE_L
                 &kp LSHIFT &kp A &kp S &kp D &kp F &kp G &kp LEFT &kp DOWN &kp RIGHT &none
                 &kp ESC    &kp Z &kp X &kp C &kp V &kp B &none &none &none &none
-                &kp LCTL &kp SPACE &none &none &to BAS_L
+                &none &kp LCTL &kp SPACE &none &to BAS_L
                 >;
         };
 
@@ -148,7 +148,7 @@
                 &kp N1 &kp N2 &kp N3 &kp N4                     &none  &none  &none  &none  &none  &none
                 &ght N9 N5 &ght N0 N6 &ght EQUAL N7 &ght INS N8 &trans &trans &trans &trans &trans &trans
                 &kp Q &kp W &kp E &kp R &none &kp O &kp P &kp H &kp KP_NUM &kp RET
-                &lt DTWO_L ESC &kp LSHFT &none &none &to BAS_L
+                &none &lt DTWO_L ESC &kp LSHFT &none &to BAS_L
                 >;
         };
 
@@ -158,7 +158,7 @@
                 &ght N9 N5 &ght N0 N6 &ght EQUAL N7 &ght INS N8 &trans &trans &trans &trans &trans &trans
                 &kp LCTRL &kp KP_NUM &kp KP_N0 &kp KP_N3 &none  &none &none &none &none &none
                 &kp LS(Q) &kp I &kp X &kp C &none               &kp Z &kp J &none &kp KP_N0 &kp KP_N3
-                &trans &kp GRAVE &trans &trans &trans
+                &trans &trans &kp GRAVE &trans &trans
                 >;
         };
     };
@@ -168,7 +168,7 @@
         combo_boot { timeout-ms = <50>; key-positions = <5 14 25 34>; bindings = <&bootloader>; };
         combo_ret  { timeout-ms = <50>; key-positions = <30 38>; bindings = <&kp RET>; layers = <BAS_L>; };
         combo_del { timeout-ms = <50>; key-positions = <21 23>; bindings = <&kp DEL>; layers = <BAS_L>; };
-        combo_tab  { timeout-ms = <50>; key-positions = <11 13>; bindings = <&kp TAB>; layers = <BAS_L>; };
+        combo_tab  { timeout-ms = <50>; key-positions = <16 18>; bindings = <&kp TAB>; layers = <BAS_L>; };
 
 
         combo_paren_l   { timeout-ms = <50>; key-positions = <18 28>; bindings = <&kp LPAR>; layers = <BAS_L>; };
@@ -202,4 +202,4 @@
 
 };
 
-// vim: ft=c
+// vim: ftc
