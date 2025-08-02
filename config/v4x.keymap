@@ -15,11 +15,11 @@
 #define BAS_L 0
 #define NAV_L 1
 #define NUM_L 2
-#define SEL_L 10
-#define GONE_L 11
-#define NCOM_L 12
-#define DONE_L 4
-#define DTWO_L 5
+#define SEL_L 3
+#define GONE_L 4
+#define NCOM_L 5
+#define DONE_L 6
+#define DTWO_L 7
 
 
 /*  0  1  2  3   4
@@ -96,7 +96,7 @@
             bindings = <
                 &trans &none     &none     &kp C_VOL_DN &kp C_VOL_UP
                 &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &kp HOME     &kp PG_UP    &kp C_MUTE  &kp C_VOL_DN &kp C_VOL_UP &none
-                &kp LEFT       &kp DOWN       &kp UP       &kp RIGHT       &none &kp CAPS &kp LSHFT &kp LCTRL    &kp LALT     &kp LGUI
+                &kp LEFT       &kp DOWN       &kp UP       &kp RIGHT       &none        &kp CAPS     &kp LSHFT   &kp LCTRL    &kp LALT     &kp LGUI
                 &msc SCRL_LEFT &msc SCRL_DOWN &msc SCRL_UP &msc SCRL_RIGHT &kp END      &kp PG_DN    &mkp LCLK &mkp MCLK &mkp RCLK &caps_word
                                               &trans       &trans          &mkp LCLK &mkp MCLK &mkp RCLK
                 >;
@@ -105,9 +105,9 @@
         number_layer {
             bindings = <
                 &trans &trans &trans &trans &trans
-                AS(GRAVE) AS(N7) AS(N8) AS(N9) ASI(EQUAL) &none &kp F7 &kp F8 &kp F9 &kp F10
+                AS(GRAVE) AS(N7) AS(N8) AS(N9) ASI(EQUAL) &none         &kp F7 &kp F8 &kp F9 &kp F10
                 AS(SEMI)  AS(N4) AS(N5) AS(N6) AS(N0)     AS(BACKSLASH) &kp F4 &kp F5 &kp F6 &kp F11
-                &kp PSCRN AS(N1) AS(N2) AS(N3) AS(MINUS)  &none &kp F1 &kp F2 &kp F3 &kp F12
+                &kp PSCRN AS(N1) AS(N2) AS(N3) AS(MINUS)  &none         &kp F1 &kp F2 &kp F3 &kp F12
                     &trans &trans &trans &trans &trans
                 >;
         };
