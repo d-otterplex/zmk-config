@@ -170,15 +170,14 @@
         combo_del { timeout-ms = <50>; key-positions = <21 23>; bindings = <&kp DEL>; layers = <BAS_L>; };
         combo_tab  { timeout-ms = <50>; key-positions = <16 18>; bindings = <&kp TAB>; layers = <BAS_L>; };
 
-
         combo_paren_l   { timeout-ms = <50>; key-positions = <18 28>; bindings = <&kp LPAR>; layers = <BAS_L>; };
-        combo_paren_r   { timeout-ms = <50>; key-positions = <20 30>; bindings = <&kp RPAR>; layers = <BAS_L>; };
+        combo_paren_r   { timeout-ms = <50>; key-positions = <21 31>; bindings = <&kp RPAR>; layers = <BAS_L>; };
         combo_bracket_l { timeout-ms = <50>; key-positions = <17 27>; bindings = <&kp LBKT>; layers = <BAS_L>; };
-        combo_bracket_r { timeout-ms = <50>; key-positions = <21 31>; bindings = <&kp RBKT>; layers = <BAS_L>; };
+        combo_bracket_r { timeout-ms = <50>; key-positions = <22 32>; bindings = <&kp RBKT>; layers = <BAS_L>; };
         combo_brace_l   { timeout-ms = <50>; key-positions = <16 26>; bindings = <&kp LBRC>; layers = <BAS_L>; };
-        combo_brace_r   { timeout-ms = <50>; key-positions = <22 32>; bindings = <&kp RBRC>; layers = <BAS_L>; };
+        combo_brace_r   { timeout-ms = <50>; key-positions = <23 33>; bindings = <&kp RBRC>; layers = <BAS_L>; };
         combo_angle_l   { timeout-ms = <50>; key-positions = <16 28>; bindings = <&kp LT>; layers = <BAS_L>; };
-        combo_angle_r   { timeout-ms = <50>; key-positions = <22 30>; bindings = <&kp GT>; layers = <BAS_L>; };
+        combo_angle_r   { timeout-ms = <50>; key-positions = <24 34>; bindings = <&kp GT>; layers = <BAS_L>; };
 
         combo_select    { timeout-ms = <50>; key-positions = <36 37>; bindings = <&mo SEL_L>; layers = <BAS_L>; };
 
