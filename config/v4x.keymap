@@ -176,7 +176,7 @@
         combo_bracket_r { timeout-ms = <50>; key-positions = <22 32>; bindings = <&kp RBKT>; layers = <BAS_L>; };
         combo_brace_l   { timeout-ms = <50>; key-positions = <16 26>; bindings = <&kp LBRC>; layers = <BAS_L>; };
         combo_brace_r   { timeout-ms = <50>; key-positions = <23 33>; bindings = <&kp RBRC>; layers = <BAS_L>; };
-        combo_angle_l   { timeout-ms = <50>; key-positions = <16 28>; bindings = <&kp LT>; layers = <BAS_L>; };
+        combo_angle_l   { timeout-ms = <50>; key-positions = <15 25>; bindings = <&kp LT>; layers = <BAS_L>; };
         combo_angle_r   { timeout-ms = <50>; key-positions = <24 34>; bindings = <&kp GT>; layers = <BAS_L>; };
 
         combo_select    { timeout-ms = <50>; key-positions = <36 37>; bindings = <&mo SEL_L>; layers = <BAS_L>; };
