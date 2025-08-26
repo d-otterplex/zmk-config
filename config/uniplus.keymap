@@ -125,7 +125,7 @@
         gaming_layer {
             bindings = <
                 &kp TAB &kp Q &kp W &kp E    &none &none &none &kp UP &none &none
-                &kp LSHFT &kp A &kp S &kp D  &none &none &kp LEFT &kp DOWN &kp RIGHT &to GTWO_L
+                &kp LSHFT &kp A &kp S &kp D  &none &none &kp LEFT &kp DOWN &kp RIGHT &none
                 &kp N1 &kp N2 &kp N3 &kp N4 &kp N5 &none &none &none &none &to GTWO_L
                 &none
                 &kp LCTL &kp SPACE &to BAS_L
