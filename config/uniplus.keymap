@@ -145,9 +145,9 @@
 
         diablo_layer {
             bindings = <
-                &kp Q  &kp W  &kp E  &kp R  &kp GRAVE &kp C &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_NUM
-                &kp N1 &kp N2 &kp N3 &kp N4 &kp N5    &kp O &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_N0
-                &kp LCTRL &kp P &kp J &kp I &kp Z     &kp H &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp RET
+                &kp Q  &kp W  &kp E  &kp R  &kp GRAVE &kp C_VOL_UP &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_NUM
+                &kp N1 &kp N2 &kp N3 &kp N4 &kp N5    AS(C_MUTE)   &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_N0
+                &kp LCTRL &kp P &kp J &kp I &kp Z     &kp C_VOL_DN &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp RET
                 &none
                 &lt ENUM_L ESC &kp LSHFT &to BAS_L
                 >;
@@ -157,7 +157,7 @@
 
         diablo_two_layer {
             bindings = <
-                &kp N5 &kp N6 &kp N7 &kp EQUAL &kp INS &trans  &trans  &trans  &trans  &trans
+                &kp C  &kp O  &kp H  &kp EQUAL &kp INS &trans  &trans  &trans  &trans  &trans
                 &kp N6 &kp N7 &kp N8 &kp N9    &kp N0  &trans  &trans  &trans  &trans  &trans
                 &trans &trans &trans &trans    &trans  &trans  &trans  &trans  &trans  &trans
                 &none
