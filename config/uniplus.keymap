@@ -83,10 +83,11 @@
         compatible = "zmk,keymap";
 
         base_layer {
+            display-name = "Base";
             bindings = <
-                &kp Q         &kp W         &kp F          &kp P           &kp B       &kp J      &kp L          &kp U          &kp Y         &kp QUOT
-                &hml LGUI A   &hml LALT R   &hml LCTRL S   &hml LSHFT T    &kp G       &kp M      &hmr LSHFT N   &hmr LCTRL E   &hmr LALT I   &hmr LGUI O
-                &kp Z         &kp X         &kp C          &kp D           &kp V       &kp K      &kp H          &kp COMMA      &kp DOT       &kp FSLH
+                &kp Q       &kp W       &kp F        &kp P        &kp B        &kp J  &kp L        &kp U        &kp Y       &kp QUOT
+                &hml LGUI A &hml LALT R &hml LCTRL S &hml LSHFT T &kp G        &kp M  &hmr LSHFT N &hmr LCTRL E &hmr LALT I &hmr LGUI O
+                &kp Z       &kp X       &kp C        &kp D        &kp V        &kp K  &kp H        &kp COMMA    &kp DOT     &kp FSLH
                 &none
                 &lt NUM_L ESC &lt NAV_L SPACE &kp BKSP
                 >;
@@ -94,10 +95,11 @@
         };
 
         tap_layer {
+            display-name = "Tap";
             bindings = <
-                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                &kp A  &kp R  &kp S  &kp T  &trans &trans &kp N  &kp E  &kp I  &kp O
-                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans        &trans &trans &trans &trans &trans
+                &kp A  &kp R  &kp S  &kp T  &trans        &trans &kp N  &kp E  &kp I  &kp O
+                &trans &trans &trans &trans &trans        &trans &trans &trans &trans &trans
                 &none
                 &lt NUM_L ESC &lt NAV_L SPACE &to BAS_L
                 >;
@@ -105,6 +107,7 @@
         };
 
         navigate_layer {
+            display-name = "Nav";
             bindings = <
                 &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &kp HOME     &kp PG_UP &kp C_VOL_DN &kp C_VOL_UP &kp C_NEXT &kp C_PREV
                 &kp  LEFT      &kp  DOWN      &kp  UP      &kp  RIGHT      &none        &kp CAPS  &kp LSHFT    &kp LCTRL    &kp LALT   &kp LGUI
@@ -116,10 +119,11 @@
         };
 
         number_layer {
+            display-name = "Num";
             bindings = <
-                AS(GRAVE) AS(N7) AS(N8) AS(N9) ASI(EQUAL) &none         &kp F7 &kp F8 &kp F9 &kp F10
-                AS(SEMI)  AS(N4) AS(N5) AS(N6) AS(N0)     AS(BACKSLASH) &kp F4 &kp F5 &kp F6 &kp F11
-                &kp PSCRN AS(N1) AS(N2) AS(N3) AS(MINUS)  &none         &kp F1 &kp F2 &kp F3 &kp F12
+                AS(GRAVE) AS(N7) AS(N8) AS(N9) ASI(EQUAL)        &none         &kp F7 &kp F8 &kp F9 &kp F10
+                AS(SEMI)  AS(N4) AS(N5) AS(N6) AS(N0)            AS(BACKSLASH) &kp F4 &kp F5 &kp F6 &kp F11
+                &kp PSCRN AS(N1) AS(N2) AS(N3) AS(MINUS)         &none         &kp F1 &kp F2 &kp F3 &kp F12
                 &none
                 &none AS(N0) AS(BACKSLASH)
                 >;
@@ -127,21 +131,23 @@
         };
 
         layer_selection_layer {
+            display-name = "Sel";
             bindings = <
-                &none &none     &none       &none       &none &none &none &none &none &none
-                &none &to TAP_L &to GONE_L  &to DONE_L  &none &none &none &none &none &none
-                &none &none     &none       &none       &none &none &none &none &none &none
+                &none &none &none       &none      &none     &none &none &none &none &none
+                &none &none &to GONE_L  &to DONE_L &none     &none &none &none &none &none
+                &none &none &none       &none      &none     &none &none &none &none &none
                 &none
-                &none &none &none
+                &none &none &to TAP_L
                 >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         gaming_layer {
+            display-name = "Gam";
             bindings = <
-                &kp TAB   &kp Q  &kp W  &kp E  &none  ASI(C_MUTE) &none    &kp UP   &none     &none
-                &kp LSHFT &kp A  &kp S  &kp D  &none  &none       &kp LEFT &kp DOWN &kp RIGHT &none
-                &kp N1    &kp N2 &kp N3 &kp N4 &kp N5 &none       &none    &none    &none     &none
+                &kp TAB   &kp Q  &kp W  &kp E  &none         ASI(C_MUTE) &none    &kp UP   &none     &none
+                &kp LSHFT &kp A  &kp S  &kp D  &none         &none       &kp LEFT &kp DOWN &kp RIGHT &none
+                &kp N1    &kp N2 &kp N3 &kp N4 &kp N5        &none       &none    &none    &none     &none
                 &none
                 &kp LCTL &kp SPACE &to BAS_L
                 >;
@@ -149,10 +155,11 @@
         };
 
         gaming_toggles_layer {
+            display-name = "Gam.Tog";
             bindings = <
-                &kt TAB   &kt Q &kt W &kt E &none &none &none &none &none &none
-                &kt LSHFT &kt A &kt S &kt D &none &none &none &none &none &none
-                &none     &none &none &none &none &none &none &none &none &none
+                &kt TAB   &kt Q &kt W &kt E &none        &none &none &none &none &none
+                &kt LSHFT &kt A &kt S &kt D &none        &none &none &none &none &none
+                &none     &none &none &none &none        &none &none &none &none &none
                 &none
                 &kt LCTL &kt SPACE &to BAS_L
                 >;
@@ -160,20 +167,22 @@
         };
 
         gaming_noncomb_layer {
+            display-name = "Gam!Com";
             bindings = <
-                &kp TAB    &kp Q &kp W &kp E &kp R &kp T &none    &kp UP   &none     &none
-                &kp LSHIFT &kp A &kp S &kp D &kp F &kp G &kp LEFT &kp DOWN &kp RIGHT &none
-                &kp ESC    &kp Z &kp X &kp C &kp V &kp B &none    &none    &none     &none
+                &kp TAB    &kp Q &kp W &kp E &kp R        &kp T &none    &kp UP   &none     &none
+                &kp LSHIFT &kp A &kp S &kp D &kp F        &kp G &kp LEFT &kp DOWN &kp RIGHT &none
+                &kp ESC    &kp Z &kp X &kp C &kp V        &kp B &none    &none    &none     &none
                 &none
                 &kp LCTL &kp SPACE &to BAS_L
                 >;
         };
 
         diablo_layer {
+            display-name = "Dia.One";
             bindings = <
-                &kp Q  &kp W  &kp E  &kp R  &kp GRAVE &kp C_VOL_UP &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_NUM
-                &kp N1 &kp N2 &kp N3 &kp N4 &kp N5    AS(C_MUTE)   &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_N0
-                &kp LCTRL &kp P &kp J &kp I &kp Z     &kp C_VOL_DN &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp RET
+                &kp Q  &kp W  &kp E  &kp R  &kp GRAVE        &kp C_VOL_UP &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_NUM
+                &kp N1 &kp N2 &kp N3 &kp N4 &kp N5           AS(C_MUTE)   &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_N0
+                &kp LCTRL &kp P &kp J &kp I &kp Z            &kp C_VOL_DN &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp RET
                 &none
                 &lt ENUM_L ESC &kp LSHFT &to BAS_L
                 >;
@@ -182,10 +191,11 @@
         };
 
         diablo_two_layer {
+            display-name = "Dia.Two";
             bindings = <
-                &kp C  &kp O  &kp H  &kp EQUAL &kp INS &trans  &trans  &trans  &trans  &trans
-                &kp N6 &kp N7 &kp N8 &kp N9    &kp N0  &trans  &trans  &trans  &trans  &trans
-                &trans &trans &trans &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                &kp C  &kp O  &kp H  &kp EQUAL &kp INS        &trans  &trans  &trans  &trans  &trans
+                &kp N6 &kp N7 &kp N8 &kp N9    &kp N0         &trans  &trans  &trans  &trans  &trans
+                &trans &trans &trans &trans    &trans         &trans  &trans  &trans  &trans  &trans
                 &none
                 &none &none &none
                 >;
