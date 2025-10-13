@@ -12,16 +12,16 @@
 #define AS(keycode)  &as LS(keycode) keycode
 // Autoshift Macro inverted
 #define ASI(keycode) &as keycode LS(keycode)
-#define GONE_L 0
-#define GTOG_L 1
-#define GTWO_L 2
-#define DONE_L 3
-#define ENUM_L 4
-#define BAS_L  5
-#define TAP_L  6
-#define NAV_L  7
-#define NUM_L  8
-#define SEL_L  9
+#define BAS_L  0
+#define NAV_L  1
+#define NUM_L  2
+#define SEL_L  3
+#define GONE_L 4
+#define GTOG_L 5
+#define GTWO_L 6
+#define DONE_L 7
+#define DTWO_L 8
+#define TAP_L  9
 
 /*
  *  0  1  2  3  4   5  6  7  8   9
@@ -94,6 +94,54 @@
     keymap {
         compatible = "zmk,keymap";
 
+        base_layer {
+            display-name = "Base";
+            bindings = <
+                &kp Q       &kp W       &kp F        &kp P        &kp B        &kp J  &kp L        &kp U        &kp Y       &kp QUOT
+                &hml LGUI A &hml LALT R &hml LCTRL S &hml LSHFT T &kp G        &kp M  &hmr LSHFT N &hmr LCTRL E &hmr LALT I &hmr LGUI O
+                &kp Z       &kp X       &kp C        &kp D        &kp V        &kp K  &kp H        &kp COMMA    &kp DOT     &kp FSLH
+                &none
+                &lt NUM_L ESC &lt NAV_L SPACE &kp BKSP
+                >;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+
+        navigate_layer {
+            display-name = "Nav";
+            bindings = <
+                &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &kp HOME     &kp PG_UP &kp C_VOL_DN &kp C_VOL_UP &kp C_NEXT &kp C_PREV
+                &kp  LEFT      &kp  DOWN      &kp  UP      &kp  RIGHT      &none        &kp CAPS  &kp LSHFT    &kp LCTRL    &kp LALT   &kp LGUI
+                &msc SCRL_LEFT &msc SCRL_DOWN &msc SCRL_UP &msc SCRL_RIGHT &kp END      &kp PG_DN &mkp LCLK    &mkp MCLK    &mkp RCLK  &caps_word
+                &none
+                &none &none &kp LS(C_MUTE)
+                >;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+
+        number_layer {
+            display-name = "Num";
+            bindings = <
+                AS(GRAVE) AS(N7) AS(N8) AS(N9) ASI(EQUAL)        &none         &kp F7 &kp F8 &kp F9 &kp F10
+                AS(SEMI)  AS(N4) AS(N5) AS(N6) AS(N0)            AS(BACKSLASH) &kp F4 &kp F5 &kp F6 &kp F11
+                &kp PSCRN AS(N1) AS(N2) AS(N3) AS(MINUS)         &none         &kp F1 &kp F2 &kp F3 &kp F12
+                &none
+                &none AS(N0) AS(BACKSLASH)
+                >;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+
+        layer_selection_layer {
+            display-name = "Sel";
+            bindings = <
+                &none &none &none       &none      &none     &none &none &none &none &none
+                &none &none &to GONE_L  &to DONE_L &none     &none &none &none &none &none
+                &none &none &none       &none      &none     &none &none &none &none &none
+                &none
+                &none &none &none
+                >;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+
         gaming_layer {
             display-name = "Gam";
             bindings = <
@@ -136,7 +184,7 @@
                 &kp N1 &kp N2 &kp N3 &kp N4 &kp N5           AS(C_MUTE)   &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_N0
                 &kp LCTRL &kp P &kp J &kp I &kp Z            &kp C_VOL_DN &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp RET
                 &none
-                &lt ENUM_L ESC &kp LSHFT &to BAS_L
+                &lt DTWO_L ESC &kp LSHFT &to BAS_L
                 >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
             // IWC
@@ -154,62 +202,14 @@
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
-        base_layer {
-            display-name = "Base";
-            bindings = <
-                &kp Q       &kp W       &kp F        &kp P        &kp B        &kp J  &kp L        &kp U        &kp Y       &kp QUOT
-                &hml LGUI A &hml LALT R &hml LCTRL S &hml LSHFT T &kp G        &kp M  &hmr LSHFT N &hmr LCTRL E &hmr LALT I &hmr LGUI O
-                &kp Z       &kp X       &kp C        &kp D        &kp V        &kp K  &kp H        &kp COMMA    &kp DOT     &kp FSLH
-                &none
-                &lt NUM_L ESC &lt NAV_L SPACE &kp BKSP
-                >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
-        };
-
         tap_layer {
             display-name = "Tap";
             bindings = <
-                &trans &trans &trans &trans &trans        &trans &trans &trans &trans &trans
-                &kp A  &kp R  &kp S  &kp T  &trans        &trans &kp N  &kp E  &kp I  &kp O
-                &trans &trans &trans &trans &trans        &trans &trans &trans &trans &trans
+                &kp Q &kp W &kp F &kp P &kp B     &kp J &kp L &kp U     &kp Y   &kp QUOT
+                &kp A &kp R &kp S &kp T &kp G     &kp M &kp N &kp E     &kp I   &kp O
+                &kp Z &kp X &kp C &kp D &kp V     &kp K &kp H &kp COMMA &kp DOT &kp FSLH
                 &none
-                &kp ESC &kp SPACE &tog TAP_L
-                >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
-        };
-
-        navigate_layer {
-            display-name = "Nav";
-            bindings = <
-                &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &kp HOME     &kp PG_UP &kp C_VOL_DN &kp C_VOL_UP &kp C_NEXT &kp C_PREV
-                &kp  LEFT      &kp  DOWN      &kp  UP      &kp  RIGHT      &none        &kp CAPS  &kp LSHFT    &kp LCTRL    &kp LALT   &kp LGUI
-                &msc SCRL_LEFT &msc SCRL_DOWN &msc SCRL_UP &msc SCRL_RIGHT &kp END      &kp PG_DN &mkp LCLK    &mkp MCLK    &mkp RCLK  &caps_word
-                &none
-                &none &none &kp LS(C_MUTE)
-                >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
-        };
-
-        number_layer {
-            display-name = "Num";
-            bindings = <
-                AS(GRAVE) AS(N7) AS(N8) AS(N9) ASI(EQUAL)        &none         &kp F7 &kp F8 &kp F9 &kp F10
-                AS(SEMI)  AS(N4) AS(N5) AS(N6) AS(N0)            AS(BACKSLASH) &kp F4 &kp F5 &kp F6 &kp F11
-                &kp PSCRN AS(N1) AS(N2) AS(N3) AS(MINUS)         &none         &kp F1 &kp F2 &kp F3 &kp F12
-                &none
-                &none AS(N0) AS(BACKSLASH)
-                >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
-        };
-
-        layer_selection_layer {
-            display-name = "Sel";
-            bindings = <
-                &none &none &none       &none      &none     &none &none &none &none &none
-                &none &none &to GONE_L  &to DONE_L &none     &none &none &none &none &none
-                &none &none &none       &none      &none     &none &none &none &none &none
-                &none
-                &none &none &tog TAP_L
+                &kp ESC &kp SPACE &kp BKSP
                 >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
@@ -238,7 +238,8 @@
 
     combos {
         compatible = "zmk,combos";
-        combo_boot       { timeout-ms = <50>; key-positions = <0 9 20 29>;               bindings = <&bootloader>; };
+        combo_boot       { timeout-ms = <50>; key-positions = <0 9 20 29>; bindings = <&bootloader>; };
+
         combo_ret        { timeout-ms = <50>; key-positions = <25 33>; bindings = <&kp RET>;    layers = <BAS_L>;  };
         combo_del        { timeout-ms = <50>; key-positions = <16 18>; bindings = <&kp DEL>;    layers = <BAS_L>;  };
         combo_tab        { timeout-ms = <50>; key-positions = <11 13>; bindings = <&kp TAB>;    layers = <BAS_L>;  };
@@ -255,9 +256,6 @@
 
         combo_mute       { timeout-ms = <50>; key-positions = <6 7>;   bindings = <&kp C_MUTE>; layers = <NAV_L>;  };
         combo_pp         { timeout-ms = <50>; key-positions = <8 9>;   bindings = <&kp C_PP>;   layers = <NAV_L>;  };
-
-        combo_sl_tap     { timeout-ms = <50>; key-positions = <24 32>; bindings = <&sl TAP_L>;  layers = <BAS_L>;  };
-        combo_game_sl_tg { timeout-ms = <50>; key-positions = <11 13>; bindings = <&sl GTOG_L>; layers = <GONE_L>; };
 
         combo_game_esc   { timeout-ms = <50>; key-positions = <0 1>;   bindings = <&kp ESC>;    layers = <GONE_L>; };
         combo_game_b     { timeout-ms = <50>; key-positions = <1 3>;   bindings = <&kp B>;      layers = <GONE_L>; };
@@ -280,8 +278,11 @@
         combo_game_tg_c  { timeout-ms = <50>; key-positions = <31 23>; bindings = <&kt C>;      layers = <GTOG_L>; };
         combo_game_tg_la { timeout-ms = <50>; key-positions = <24 32>; bindings = <&kt LALT>;   layers = <GTOG_L>; };
 
+        combo_game_sl_tg { timeout-ms = <50>; key-positions = <11 13>; bindings = <&sl GTOG_L>; layers = <GONE_L>; };
         combo_decombo    { timeout-ms = <50>; key-positions = <9 29>;  bindings = <&to GTWO_L>; layers = <GONE_L>; };
         combo_recombo    { timeout-ms = <50>; key-positions = <9 29>;  bindings = <&to GONE_L>; layers = <GTWO_L>; };
+
+        combo_sl_tap     { timeout-ms = <50>; key-positions = <26 33>; bindings = <&sl TAP_L>;  layers = <BAS_L GONE_L DONE_L>; };
     };
 
 /*
