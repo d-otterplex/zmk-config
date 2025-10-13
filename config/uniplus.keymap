@@ -97,11 +97,11 @@
         gaming_layer {
             display-name = "Gam";
             bindings = <
-                &kp TAB   &kp Q  &kp W  &kp E  &none         ASI(C_MUTE) &none    &kp UP   &none     &none
-                &kp LSHFT &kp A  &kp S  &kp D  &none         &none       &kp LEFT &kp DOWN &kp RIGHT &none
-                &kp N1    &kp N2 &kp N3 &kp N4 &kp N5        &none       &none    &none    &none     &none
+                &kp TAB    &kp Q  &kp W  &kp E  &none         ASI(C_MUTE) &none    &kp UP   &none     &none
+                &fkp LSHFT &kp A  &kp S  &kp D  &none         &none       &kp LEFT &kp DOWN &kp RIGHT &none
+                &kp N1     &kp N2 &kp N3 &kp N4 &kp N5        &none       &none    &none    &none     &none
                 &none
-                &kp LCTL &kp SPACE &to BAS_L
+                &fkp LCTL  &kp SPACE &to BAS_L
                 >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
@@ -109,11 +109,11 @@
         gaming_toggles_layer {
             display-name = "Gam.Tog";
             bindings = <
-                &kt TAB    &kt Q &kt W &kt E &none        &none &none &none &none &none
-                &mkt LSHFT &kt A &kt S &kt D &none        &none &none &none &none &none
-                &none      &none &none &none &none        &none &none &none &none &none
+                &kt TAB   &kt Q &kt W &kt E &none        &none &none &none &none &none
+                &kt LSHFT &kt A &kt S &kt D &none        &none &none &none &none &none
+                &none     &none &none &none &none        &none &none &none &none &none
                 &none
-                &mkt LCTL  &kt SPACE &to BAS_L
+                &kt LCTL  &kt SPACE &to BAS_L
                 >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
@@ -217,13 +217,14 @@
     };
 
     macros {
-        mkt: mod_key_toggle {
+        fkp: force_key_press {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
             bindings
                 = <&macro_param_1to1>
                 , <&macro_tap &kt_on  MACRO_PLACEHOLDER>
                 , <&macro_pause_for_release>
+                , <&macro_param_1to1>
                 , <&macro_tap &kt_off MACRO_PLACEHOLDER>;
         };
     //     tap_longer: tap_longer {
@@ -267,7 +268,7 @@
         combo_game_z     { timeout-ms = <50>; key-positions = <11 12>; bindings = <&kp Z>;      layers = <GONE_L>; };
         combo_game_x     { timeout-ms = <50>; key-positions = <12 13>; bindings = <&kp X>;      layers = <GONE_L>; };
         combo_game_c     { timeout-ms = <50>; key-positions = <31 23>; bindings = <&kp C>;      layers = <GONE_L>; };
-        combo_game_la    { timeout-ms = <50>; key-positions = <24 32>; bindings = <&kp LALT>;   layers = <GONE_L>; };
+        combo_game_la    { timeout-ms = <50>; key-positions = <24 32>; bindings = <&fkp LALT>;  layers = <GONE_L>; };
 
         combo_game_tg_b  { timeout-ms = <50>; key-positions = <1 3>;   bindings = <&kt B>;      layers = <GTOG_L>; };
         combo_game_tg_g  { timeout-ms = <50>; key-positions = <1 2>;   bindings = <&kt G>;      layers = <GTOG_L>; };
@@ -277,7 +278,7 @@
         combo_game_tg_z  { timeout-ms = <50>; key-positions = <11 12>; bindings = <&kt Z>;      layers = <GTOG_L>; };
         combo_game_tg_x  { timeout-ms = <50>; key-positions = <12 13>; bindings = <&kt X>;      layers = <GTOG_L>; };
         combo_game_tg_c  { timeout-ms = <50>; key-positions = <31 23>; bindings = <&kt C>;      layers = <GTOG_L>; };
-        combo_game_tg_la { timeout-ms = <50>; key-positions = <24 32>; bindings = <&mkt LALT>;  layers = <GTOG_L>; };
+        combo_game_tg_la { timeout-ms = <50>; key-positions = <24 32>; bindings = <&kt LALT>;   layers = <GTOG_L>; };
 
         combo_decombo    { timeout-ms = <50>; key-positions = <9 29>;  bindings = <&to GTWO_L>; layers = <GONE_L>; };
         combo_recombo    { timeout-ms = <50>; key-positions = <9 29>;  bindings = <&to GONE_L>; layers = <GTWO_L>; };
