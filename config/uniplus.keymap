@@ -145,7 +145,7 @@
         gaming_layer {
             display-name = "Gam";
             bindings = <
-                &kp TAB    &kp Q  &kp W  &kp E  &none         ASI(C_MUTE) &none    &kp UP   &none     &none
+                &kp TAB   &kp Q  &kp W  &kp E  &none         ASI(C_MUTE) &none    &kp UP   &none     &none
                 &kp LSHFT &kp A  &kp S  &kp D  &none         &none       &kp LEFT &kp DOWN &kp RIGHT &none
                 &kp N1    &kp N2 &kp N3 &kp N4 &kp N5        &none       &none    &none    &none     &none
                 &none
@@ -180,11 +180,11 @@
         diablo_layer {
             display-name = "Dia.One";
             bindings = <
-                &kp Q  &kp W  &kp E  &kp R  &kp GRAVE        &kp C_VOL_UP &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_NUM
-                &kp N1 &kp N2 &kp N3 &kp N4 &kp N5           AS(C_MUTE)   &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_N0
-                &kp LCTRL &kp P &kp J &kp I &kp Z            &kp C_VOL_DN &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp RET
+                &kp Q   &kp W  &kp E  &kp R  &none            &kp C_VOL_UP &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_NUM
+                &kp N1  &kp N2 &kp N3 &kp N4 &none            AS(C_MUTE)   &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_N0
+                &kp P  &kp J  &kp I  &kp Z   &none            &kp C_VOL_DN &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp RET
                 &none
-                &lt DTWO_L ESC &kp LSHFT &to BAS_L
+                &lt DTWO_L LCTRL &kp LSHFT &to BAS_L
                 >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
             // IWC
@@ -193,9 +193,9 @@
         diablo_two_layer {
             display-name = "Dia.Two";
             bindings = <
-                &kp C  &kp O  &kp H  &kp EQUAL &kp INS        &trans  &trans  &trans  &trans  &trans
-                &kp N6 &kp N7 &kp N8 &kp N9    &kp N0         &trans  &trans  &trans  &trans  &trans
-                &trans &trans &trans &trans    &trans         &trans  &trans  &trans  &trans  &trans
+                &kp C  &kp O  &kp H      &ght EQUAL INS &none      &trans  &trans  &trans  &trans  &trans
+                &kp N5 &kp N6 &ght N9 N7 &ght N0 N8     &none      &trans  &trans  &trans  &trans  &trans
+                &none  &none  &none      &none          &none      &trans  &trans  &trans  &trans  &trans
                 &none
                 &none &none &none
                 >;
@@ -257,7 +257,7 @@
         combo_mute       { timeout-ms = <50>; key-positions = <6 7>;   bindings = <&kp C_MUTE>; layers = <NAV_L>;  };
         combo_pp         { timeout-ms = <50>; key-positions = <8 9>;   bindings = <&kp C_PP>;   layers = <NAV_L>;  };
 
-        combo_game_esc   { timeout-ms = <50>; key-positions = <0 1>;   bindings = <&kp ESC>;    layers = <GONE_L>; };
+        combo_game_esc   { timeout-ms = <50>; key-positions = <0 1>;   bindings = <&kp ESC>;    layers = <GONE_L DONE_L>; };
         combo_game_b     { timeout-ms = <50>; key-positions = <1 3>;   bindings = <&kp B>;      layers = <GONE_L>; };
         combo_game_g     { timeout-ms = <50>; key-positions = <1 2>;   bindings = <&kp G>;      layers = <GONE_L>; };
         combo_game_r     { timeout-ms = <50>; key-positions = <2 3>;   bindings = <&kp R>;      layers = <GONE_L>; };
@@ -281,6 +281,8 @@
         combo_game_sl_tg { timeout-ms = <50>; key-positions = <11 13>; bindings = <&sl GTOG_L>; layers = <GONE_L>; };
         combo_decombo    { timeout-ms = <50>; key-positions = <9 29>;  bindings = <&to GTWO_L>; layers = <GONE_L>; };
         combo_recombo    { timeout-ms = <50>; key-positions = <9 29>;  bindings = <&to GONE_L>; layers = <GTWO_L>; };
+
+        combo_d2_grave   { timeout-ms = <50>; key-positions = <2 3>;   bindings = <&kp GRAVE>;  layers = <DONE_L>; };
 
         combo_sl_tap     { timeout-ms = <50>; key-positions = <26 33>; bindings = <&sl TAP_L>;  layers = <BAS_L GONE_L DONE_L>; };
     };
