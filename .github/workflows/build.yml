@@ -1,4 +1,12 @@
-on: [push, pull_request, workflow_dispatch]
+name: Build ZMK firmware
+run-name: '#${{ github.run_id }} - ${{ github.ref_name }}: ${{ github.event.push.head_commit.message }}'
+on:
+  push:
+    branches-ignore:
+      - 'main'
+  pull_request:
+    branches-ignore:
+      - 'main'
 
 jobs:
   build:
