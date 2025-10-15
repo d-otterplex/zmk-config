@@ -70,13 +70,21 @@
             tapping-term-ms = <200>;
             quick-tap-ms = <100>;
         };
-        ght: gamers_hold_tap {
+        ght: game_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
             flavor = "hold-preferred";
             tapping-term-ms = <150>;
         };
+        glt: game_layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&mo>, <&kp>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <150>;
+        };
+    /*  Didn't work
         kt_on: key_toggle_on {
             compatible = "zmk,behavior-key-toggle";
             #binding-cells = <1>;
@@ -89,6 +97,7 @@
             display-name = "Key Off";
             toggle-mode = "off";
         };
+    */
     };
 
     keymap {
@@ -133,9 +142,9 @@
         layer_selection_layer {
             display-name = "Sel";
             bindings = <
-                &none &none &none       &none      &none     &none &none &none &none &none
-                &none &none &to GONE_L  &to DONE_L &none     &none &none &none &none &none
-                &none &none &none       &none      &none     &none &none &none &none &none
+                &none &none      &none      &none      &none     &none &none &none &none &none
+                &none &tog TAP_L &to GONE_L &to DONE_L &none     &none &none &none &none &none
+                &none &none      &none      &none      &none     &none &none &none &none &none
                 &none
                 &none &none &none
                 >;
@@ -145,9 +154,9 @@
         gaming_layer {
             display-name = "Gam";
             bindings = <
-                &kp TAB   &kp Q  &kp W  &kp E  &none         ASI(C_MUTE) &none    &kp UP   &none     &none
-                &kp LSHFT &kp A  &kp S  &kp D  &none         &none       &kp LEFT &kp DOWN &kp RIGHT &none
-                &kp N1    &kp N2 &kp N3 &kp N4 &kp N5        &none       &none    &none    &none     &none
+                &kp TAB   &kp Q &kp W &kp E &none         ASI(C_MUTE) &none    &kp UP   &none     &none
+                &kp LSHFT &kp A &kp S &kp D &none         &none       &kp LEFT &kp DOWN &kp RIGHT &none
+                &none     &none &none &none &none         &none       &none    &none    &none     &none
                 &none
                 &kp LCTL  &kp SPACE &to BAS_L
                 >;
@@ -178,11 +187,11 @@
         };
 
         diablo_layer {
-            display-name = "Dia.One";
+            display-name = "Dia.I";
             bindings = <
-                &kp Q   &kp W  &kp E  &kp R  &none            &kp C_VOL_UP &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_NUM
-                &kp N1  &kp N2 &kp N3 &kp N4 &none            AS(C_MUTE)   &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_N0
-                &kp P  &kp J  &kp I  &kp Z   &none            &kp C_VOL_DN &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp RET
+                &kp N1  &kp N2 &kp N3 &kp N4 &none            &kp C_VOL_UP &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_NUM
+                &kp Q   &kp W  &kp E  &kp R  &none            AS(C_MUTE)   &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_N0
+                &none   &none  &none  &none  &none            &kp C_VOL_DN &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp RET
                 &none
                 &lt DTWO_L ESC &kp LSHFT &to BAS_L
                 >;
@@ -191,11 +200,23 @@
         };
 
         diablo_two_layer {
-            display-name = "Dia.Two";
+            display-name = "Dia.II";
             bindings = <
-                &kp C  &kp O  &kp H      &ght EQUAL INS &none      &trans  &trans  &trans  &trans  &trans
-                &kp N5 &kp N6 &ght N9 N7 &ght N0 N8     &none      &trans  &trans  &trans  &trans  &trans
-                &none  &none  &none      &none          &none      &trans  &trans  &trans  &trans  &trans
+                &kp N5 &kp N6 &kp N7 &kp N8 &none    &trans &trans &trans &trans &trans
+                &kp P  &kp J  &kp I  &kp X  &none    &trans &trans &trans &trans &trans
+                &none  &none  &none  &none  &none    &trans &trans &trans &trans &trans
+                &none
+                &none &none &none
+                >;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+
+        diablo_three_layer {
+            display-name = "Dia.III";
+            bindings = <
+                &kp N9 &kp N0 &kp INS &kp MINUS &none      &trans &trans &trans &trans &trans
+                &kp C  &kp T  &kp O   &none     &none      &trans &trans &trans &trans &trans
+                &none  &none  &none   &none     &none      &trans &trans &trans &trans &trans
                 &none
                 &none &none &none
                 >;
@@ -209,13 +230,14 @@
                 &kp A &kp R &kp S &kp T &kp G     &kp M &kp N &kp E     &kp I   &kp O
                 &kp Z &kp X &kp C &kp D &kp V     &kp K &kp H &kp COMMA &kp DOT &kp FSLH
                 &none
-                &kp ESC &kp SPACE &kp BKSP
+                &kp ESC &kp SPACE &tog TAP_L
                 >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
     };
 
+    /*  Didn't work
     macros {
         fkp: force_key_press {
             compatible = "zmk,behavior-macro-one-param";
@@ -227,14 +249,15 @@
                 , <&macro_param_1to1>
                 , <&macro_release &kp MACRO_PLACEHOLDER>;
         };
-    //     tap_longer: tap_longer {
-    //         compatible = "zmk,behavior-macro-one-param";
-    //         #binding-cells = <1>;
-    //         bindings
-    //             = <&macro_param_1to1>
-    //             , <&macro_tap &kp MACRO_PLACEHOLDER>;
-    //     };
+        tap_longer: tap_longer {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings
+                = <&macro_param_1to1>
+                , <&macro_tap &kp MACRO_PLACEHOLDER>;
+        };
     };
+    */
 
     combos {
         compatible = "zmk,combos";
@@ -282,10 +305,11 @@
         combo_decombo    { timeout-ms = <50>; key-positions = <9 29>;  bindings = <&to GTWO_L>; layers = <GONE_L>; };
         combo_recombo    { timeout-ms = <50>; key-positions = <9 29>;  bindings = <&to GONE_L>; layers = <GTWO_L>; };
 
-        combo_d2_lc      { timeout-ms = <50>; key-positions = <24 32>; bindings = <&kp LCTRL>;  layers = <DONE_L>; };
-        combo_d2_grave   { timeout-ms = <50>; key-positions = <2 3>;   bindings = <&kp GRAVE>;  layers = <DONE_L>; };
+        combo_d2_lc      { timeout-ms = <50>; key-positions = <31 23>; bindings = <&kp LCTRL>;     layers = <DONE_L>; };
+        combo_d2_grave   { timeout-ms = <50>; key-positions = <2 3>;   bindings = <&kp GRAVE>;     layers = <DONE_L>; };
+        combo_d2_lt_z_3  { timeout-ms = <50>; key-positions = <24 32>; bindings = <&glt DTHR_L Z>; layers = <DONE_L>; };
 
-        combo_sl_tap     { timeout-ms = <50>; key-positions = <26 33>; bindings = <&sl TAP_L>;  layers = <BAS_L GONE_L DONE_L>; };
+        combo_sl_tap     { timeout-ms = <50>; key-positions = <26 33>; bindings = <&sl TAP_L>;     layers = <BAS_L GONE_L DONE_L>; };
     };
 
 /*
