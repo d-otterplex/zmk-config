@@ -17,12 +17,13 @@
 #define  NUM_L 2
 #define  SEL_L 3
 #define GONE_L 4
-#define GTOG_L 5
-#define GTWO_L 6
-#define DONE_L 7
-#define DTWO_L 8
-#define DTHR_L 9
-#define  TAP_L 10
+#define GNUM_L 5
+#define GTOG_L 6
+#define GTWO_L 7
+#define DONE_L 8
+#define DTWO_L 9
+#define DTHR_L 10
+#define  TAP_L 11
 
 /*
  *  0  1  2  3  4   5  6  7  8   9
@@ -153,9 +154,21 @@
         gaming_layer {
             display-name = "Gam";
             bindings = <
-                &none &kp Q &kp W &kp E &kp TAB      ASI(C_MUTE) &none    &kp UP   &none     &none
-                &none &kp A &kp S &kp D &kp LSHFT    &none       &kp LEFT &kp DOWN &kp RIGHT &none
+                &none &kp A &kp W &kp D &kp LSHFT    ASI(C_MUTE) &none    &kp UP   &none     &none
+                &none &kp Z &kp G &kp C ASI(C_MUTE)  &none       &kp LEFT &kp DOWN &kp RIGHT &none
                 &none &none &none &none &none        &none       &none    &none    &none     &none
+                &none
+                &kp LCTL  &kp SPACE &to BAS_L
+                >;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+
+        gaming_number_layer {
+            display-name = "Gam.Num";
+            bindings = <
+                &none &kp N1 &kp N2 &kp N3 &kp GRAVE    ASI(C_MUTE) &none    &kp UP   &none     &none
+                &none &kp N4 &kp N5 &kp N6 &none        &none       &kp LEFT &kp DOWN &kp RIGHT &none
+                &none &none  &none  &none  &none        &none       &none    &none    &none     &none
                 &none
                 &kp LCTL  &kp SPACE &to BAS_L
                 >;
@@ -280,26 +293,28 @@
         combo_pp         { timeout-ms = <50>; key-positions = <8 9>;   bindings = <&kp C_PP>;   layers = <NAV_L>;  };
 
         combo_game_esc   { timeout-ms = <50>; key-positions = <3 4>;   bindings = <&kp ESC>;    layers = <GONE_L>; };
-        combo_game_b     { timeout-ms = <50>; key-positions = <1 3>;   bindings = <&kp B>;      layers = <GONE_L>; };
-        combo_game_g     { timeout-ms = <50>; key-positions = <1 2>;   bindings = <&kp G>;      layers = <GONE_L>; };
-        combo_game_r     { timeout-ms = <50>; key-positions = <2 3>;   bindings = <&kp R>;      layers = <GONE_L>; };
-        combo_game_mute  { timeout-ms = <50>; key-positions = <1 11>; bindings = <ASI(C_MUTE)>;layers = <GONE_L>; };
-        combo_game_v     { timeout-ms = <50>; key-positions = <2 13>;  bindings = <&kp V>;      layers = <GONE_L>; };
-        combo_game_f     { timeout-ms = <50>; key-positions = <3 13>;  bindings = <&kp F>;      layers = <GONE_L>; };
-        combo_game_z     { timeout-ms = <50>; key-positions = <11 12>; bindings = <&kp Z>;      layers = <GONE_L>; };
-        combo_game_x     { timeout-ms = <50>; key-positions = <12 13>; bindings = <&kp X>;      layers = <GONE_L>; };
-        combo_game_c     { timeout-ms = <50>; key-positions = <23 31>; bindings = <&kp C>;      layers = <GONE_L>; };
+        combo_game_tab   { timeout-ms = <50>; key-positions = <4 32>;  bindings = <&kp TAB>;    layers = <GONE_L>; };
+        combo_game_caps  { timeout-ms = <50>; key-positions = <3 4 32>;bindings = <&kp CAPS>;   layers = <GONE_L>; };
+        combo_game_q     { timeout-ms = <50>; key-positions = <1 32>;  bindings = <&kp Q>;      layers = <GONE_L>; };
+        combo_game_e     { timeout-ms = <50>; key-positions = <3 32>;  bindings = <&kp E>;      layers = <GONE_L>; };
+        combo_game_r     { timeout-ms = <50>; key-positions = <3 31>;  bindings = <&kp R>;      layers = <GONE_L>; };
+        combo_game_s     { timeout-ms = <50>; key-positions = <2 32>;  bindings = <&kp S>;      layers = <GONE_L>; };
+        combo_game_f     { timeout-ms = <50>; key-positions = <1 31>;  bindings = <&kp F>;      layers = <GONE_L>; };
+        combo_game_x     { timeout-ms = <50>; key-positions = <1 3 31>;bindings = <&kp X>;      layers = <GONE_L>; };
+        combo_game_c     { timeout-ms = <50>; key-positions = <1 3 32>;bindings = <&kp C>;      layers = <GONE_L>; };
+        combo_game_v     { timeout-ms = <50>; key-positions = <1 3>;   bindings = <&kp V>;      layers = <GONE_L>; };
         combo_game_la    { timeout-ms = <50>; key-positions = <24 32>; bindings = <&kp LALT>;   layers = <GONE_L>; };
+        combo_game_lt_num{ timeout-ms = <50>; key-positions = <23 31>; bindings = <&mo GNUM_L>; layers = <GONE_L>; };
 
-        combo_game_tg_b  { timeout-ms = <50>; key-positions = <1 3>;   bindings = <&kt B>;      layers = <GTOG_L>; };
-        combo_game_tg_g  { timeout-ms = <50>; key-positions = <1 2>;   bindings = <&kt G>;      layers = <GTOG_L>; };
-        combo_game_tg_r  { timeout-ms = <50>; key-positions = <2 3>;   bindings = <&kt R>;      layers = <GTOG_L>; };
-        combo_game_tg_la { timeout-ms = <50>; key-positions = <1 11>;  bindings = <&kt LALT>;   layers = <GTOG_L>; };
-        combo_game_tg_v  { timeout-ms = <50>; key-positions = <2 13>;  bindings = <&kt V>;      layers = <GTOG_L>; };
-        combo_game_tg_f  { timeout-ms = <50>; key-positions = <3 13>;  bindings = <&kt F>;      layers = <GTOG_L>; };
-        combo_game_tg_z  { timeout-ms = <50>; key-positions = <11 12>; bindings = <&kt Z>;      layers = <GTOG_L>; };
-        combo_game_tg_x  { timeout-ms = <50>; key-positions = <12 13>; bindings = <&kt X>;      layers = <GTOG_L>; };
-        combo_game_tg_c  { timeout-ms = <50>; key-positions = <23 31>; bindings = <&kt C>;      layers = <GTOG_L>; };
+        combo_game_tg_q  { timeout-ms = <50>; key-positions = <1 32>;  bindings = <&kt Q>;      layers = <GONE_L>; };
+        combo_game_tg_e  { timeout-ms = <50>; key-positions = <3 32>;  bindings = <&kt E>;      layers = <GONE_L>; };
+        combo_game_tg_r  { timeout-ms = <50>; key-positions = <3 31>;  bindings = <&kt R>;      layers = <GONE_L>; };
+        combo_game_tg_s  { timeout-ms = <50>; key-positions = <2 32>;  bindings = <&kt S>;      layers = <GONE_L>; };
+        combo_game_tg_f  { timeout-ms = <50>; key-positions = <1 31>;  bindings = <&kt F>;      layers = <GONE_L>; };
+        combo_game_tg_x  { timeout-ms = <50>; key-positions = <1 3 31>;bindings = <&kt X>;      layers = <GONE_L>; };
+        combo_game_tg_c  { timeout-ms = <50>; key-positions = <1 3 32>;bindings = <&kt C>;      layers = <GONE_L>; };
+        combo_game_tg_v  { timeout-ms = <50>; key-positions = <1 3>;   bindings = <&kt V>;      layers = <GONE_L>; };
+        combo_game_tg_la { timeout-ms = <50>; key-positions = <24 32>; bindings = <&kt LALT>;   layers = <GONE_L>; };
 
         combo_game_sl_tg { timeout-ms = <50>; key-positions = <11 13>; bindings = <&sl GTOG_L>; layers = <GONE_L>; };
         combo_decombo    { timeout-ms = <50>; key-positions = <9 29>;  bindings = <&to GTWO_L>; layers = <GONE_L>; };
