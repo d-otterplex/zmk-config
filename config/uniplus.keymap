@@ -178,8 +178,8 @@
         gaming_toggles_layer {
             display-name = "Gam.Tog";
             bindings = <
-                &none &kp A &kp W &kp D &kp LSHFT    &none &none &none &none &none
-                &none &kp Z &kp G &kp C &none        &none &none &none &none &none
+                &none &kt A &kt W &kt D &kt LSHFT    &none &none &none &none &none
+                &none &kt Z &kt G &kt C &none        &none &none &none &none &none
                 &none &none &none &none &none        &none &none &none &none &none
                 &none
                 &kt LCTL  &kt SPACE &to BAS_L
