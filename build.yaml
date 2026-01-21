@@ -17,6 +17,14 @@
 #     cmake-args: -DCONFIG_ZMK_STUDIO=y
 #     artifact-name: corne_left_with_studio
 #
+# ```
+# podman run -it --rm \
+#  --security-opt label=disable --workdir /workspaces/zmk \
+#  --volume <zmk-repo>:/workspaces/zmk \
+#  --volume zmk-config:/workspaces/zmk-config \
+#   <zmk-devcontainer>:latest /bin/bash
+# ```
+# `west build -p -b seeeduino_xiao_rp2040 -- -DSHIELD=uniplus -DZMK_EXTRA_MODULES=/workspaces/zmk-config -DZMK_CONFIG=/workspaces/zmk-config/config`
 ---
 include:
   - board: seeeduino_xiao_rp2040

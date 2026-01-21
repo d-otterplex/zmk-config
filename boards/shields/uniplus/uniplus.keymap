@@ -7,10 +7,10 @@
 
         default_layer {
           bindings = <
-    &kp Q &kp W &kp F &kp P &kp B &kp J &kp L &kp U &kp Y &kp SQT
+    &kp Q &kp W &kp F &kp P &kp B &kp J &kp L &kp U &kp Y &kp ESC
     &kp A &kp R &kp S &kp T &kp G &kp M &kp N &kp E &kp I &kp O
     &kp Z &kp X &kp C &kp D &kp V &kp K &kp H &kp COMMA &kp DOT &kp SLASH
-                &kp B &kp B &kp B &kp B
+          &none &kp LG(TAB) &kp LA(TAB) &bootloader
               >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
