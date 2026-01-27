@@ -1,0 +1,8 @@
+file_format: 1
+id: card32
+name: card32
+type: shield
+requires:
+  - seeed_xiao
+features:
+  - keys

@@ -17,7 +17,8 @@
 #     cmake-args: -DCONFIG_ZMK_STUDIO=y
 #     artifact-name: corne_left_with_studio
 #
+# `west build -p -b seeeduino_xiao_rp2040 -- -DSHIELD=card32 -DZMK_EXTRA_MODULES=/workspaces/zmk-config -DZMK_CONFIG=/workspaces/zmk-config/config`
 ---
 include:
-  - board: adafruit_qt_py_rp2040
-    shield: hummingbird
+  - board: seeeduino_xiao_rp2040
+    shield: card32

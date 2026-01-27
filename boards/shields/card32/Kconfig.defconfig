@@ -1,0 +1,8 @@
+if SHIELD_CARD32
+      
+config ZMK_KEYBOARD_NAME  
+    default "card32"
+config SPI
+    default y
+
+endif
