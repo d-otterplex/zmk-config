@@ -1,6 +1,6 @@
 file_format: 1
-id: card32
-name: card32
+id: card17
+name: card17
 type: shield
 requires:
   - seeed_xiao

@@ -1,0 +1,5 @@
+if SHIELD_CARD17
+      
+config ZMK_KEYBOARD_NAME  
+    default "card17"
+endif

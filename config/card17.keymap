@@ -1,0 +1,139 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+// Autoshift Macro and Inversion
+#define AS(keycode)  &as LS(keycode) keycode
+#define ASI(keycode) &as keycode LS(keycode)
+// MOSL convenience Macro
+#define MOSL(layer) &mosl layer layer
+
+#define GONE_L 0
+#define GNUM_L 1
+#define GTOG_L 2
+
+// Using layer taps on thumbs, having quick tap as well helps w/ repeating space/backspace
+&lt { quick-tap-ms = <200>; };
+
+/ {
+  behaviors {
+    as: auto_shift {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      bindings = <&kp>, <&kp>;
+      flavor = "tap-preferred";
+      tapping-term-ms = <200>;
+      quick-tap-ms = <100>;
+    };
+    ght: game_hold_tap {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      bindings = <&kp>, <&kp>;
+      flavor = "hold-preferred";
+      tapping-term-ms = <150>;
+    };
+//    glt: game_layer_tap {
+//      compatible = "zmk,behavior-hold-tap";
+//      #binding-cells = <2>;
+//      bindings = <&mo>, <&kp>;
+//      flavor = "hold-preferred";
+//      tapping-term-ms = <150>;
+//    };
+    mosl: momentary_sticky_layer {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      bindings = <&mo>, <&sl>;
+      flavor = "hold-preferred";
+      tapping-term-ms = <150>;
+    };
+  };
+
+  keymap {
+    compatible = "zmk,keymap";
+    gaming_layer {
+      display-name = "Gam";
+      bindings = <
+        &kp A &kp W &kp D
+        &kp Z &kp X &kp C &kp LSHFT 
+
+        &kp LSHFT
+        &none    &kp UP      &none
+        &kp LEFT &kp DOWN    &kp RIGHT        
+                
+            ASI(C_MUTE)
+        &kp LCTL &kp SPACE
+      >;
+    };
+    gaming_number_layer {
+      display-name = "Gam.Num";
+      bindings = <
+        &kp N1 &kp N2 &kp N3
+        &kp N4 &kp N5 &kp N6 &kp GRAVE     
+        
+        &none
+        &none    &kp UP   &none
+        &kp LEFT &kp DOWN &kp RIGHT
+
+        &none
+        &kp LCTL &kp SPACE
+      >;
+    };
+    gaming_toggles_layer {
+      display-name = "Gam.Tog";
+      bindings = <
+        &kt A &kt W &kt D    
+        &kt Z &kt X &kt C &kt LSHFT
+
+        &none
+        &none &none &none
+        &none &none &none
+        
+        &none
+        &kt LCTL &kt SPACE
+      >;
+    };
+  };
+
+  /*
+   *  0 1 2      7  8  9  10
+   *  3 4 5 6       11 12 13
+   *           14
+   *         15  16
+   */
+
+  combos {
+    compatible = "zmk,combos";
+    combo_bootloader { timeout-ms = <50>; key-positions = <0 10 3 13>; bindings = <&bootloader>; };
+
+    combo_esc   { timeout-ms = <50>; key-positions = <2 6>;   bindings = <&kp ESC>;    layers = <GONE_L>; };
+    combo_tab   { timeout-ms = <50>; key-positions = <16 6>;  bindings = <&kp TAB>;    layers = <GONE_L>; };
+    combo_caps  { timeout-ms = <50>; key-positions = <16 2 6>;bindings = <&kp CAPS>;   layers = <GONE_L>; };
+    combo_s     { timeout-ms = <50>; key-positions = <16 1>;  bindings = <&kp S>;      layers = <GONE_L>;
+                  slow-release; };
+    
+    combo_q     { timeout-ms = <50>; key-positions = <16 0>;  bindings = <&kp Q>;      layers = <GONE_L>; };
+    combo_e     { timeout-ms = <50>; key-positions = <16 2>;  bindings = <&kp E>;      layers = <GONE_L>; };
+    combo_r     { timeout-ms = <50>; key-positions = <15 2>;  bindings = <&kp R>;      layers = <GONE_L>; };
+    combo_f     { timeout-ms = <50>; key-positions = <15 0>;  bindings = <&kp F>;      layers = <GONE_L>; };
+    combo_g     { timeout-ms = <50>; key-positions = <15 0 2>;bindings = <&kp G>;      layers = <GONE_L>; };
+    combo_b     { timeout-ms = <50>; key-positions = <16 0 2>;bindings = <&kp B>;      layers = <GONE_L>; };
+    
+    combo_v     { timeout-ms = <50>; key-positions = <0 2>;   bindings = <&kp V>;      layers = <GONE_L>; };
+    combo_la    { timeout-ms = <50>; key-positions = <16 14>; bindings = <&kp LALT>;   layers = <GONE_L>; };
+    combo_lt_num{ timeout-ms = <50>; key-positions = <14 15>; bindings = <&mo GNUM_L>; layers = <GONE_L>; };
+    combo_ms_tg { timeout-ms = <50>; key-positions = <3 4 5>;bindings = <MOSL(GTOG_L)>;layers = <GONE_L>; };
+
+    combo_tg_s  { timeout-ms = <50>; key-positions = <16 1>;  bindings = <&kt S>;      layers = <GTOG_L>; };
+    
+    combo_tg_q  { timeout-ms = <50>; key-positions = <16 0>;  bindings = <&kt Q>;      layers = <GTOG_L>; };
+    combo_tg_e  { timeout-ms = <50>; key-positions = <16 2>;  bindings = <&kt E>;      layers = <GTOG_L>; };
+    combo_tg_r  { timeout-ms = <50>; key-positions = <15 2>;  bindings = <&kt R>;      layers = <GTOG_L>; };
+    combo_tg_f  { timeout-ms = <50>; key-positions = <15 0>;  bindings = <&kt F>;      layers = <GTOG_L>; };
+    combo_tg_g  { timeout-ms = <50>; key-positions = <15 0 2>;bindings = <&kt G>;      layers = <GTOG_L>; };
+    combo_tg_b  { timeout-ms = <50>; key-positions = <16 0 2>;bindings = <&kt B>;      layers = <GTOG_L>; };
+    
+    combo_tg_v  { timeout-ms = <50>; key-positions = <0 2>;   bindings = <&kt V>;      layers = <GTOG_L>; };
+    combo_tg_la { timeout-ms = <50>; key-positions = <16 14>; bindings = <&kt LALT>;   layers = <GTOG_L>; };
+  };
+};
+
+// vim: ft=c
