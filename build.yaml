@@ -20,5 +20,5 @@
 # `west build -p -b adafruit_qt_py_rp2040 -- -DSHIELD=card17 -DZMK_EXTRA_MODULES=/workspaces/zmk-config -DZMK_CONFIG=/workspaces/zmk-config/config`
 ---
 include:
-  - board: seeeduino_xiao_rp2040
-    shield: card32
+  - board: adafruit_qt_py_rp2040
+    shield: card17

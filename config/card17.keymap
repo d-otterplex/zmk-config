@@ -59,7 +59,7 @@
         &none    &kp UP      &none
         &kp LEFT &kp DOWN    &kp RIGHT        
                 
-            ASI(C_MUTE)
+            &kp LSHFT
         &kp LCTL &kp SPACE
       >;
     };
