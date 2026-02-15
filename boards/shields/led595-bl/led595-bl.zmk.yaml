@@ -1,0 +1,9 @@
+file_format: 1
+id: led595
+name: led595
+type: shield
+requires:
+  - pro_micro
+features:
+  - keys
+  - backlight

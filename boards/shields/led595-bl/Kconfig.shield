@@ -1,0 +1,2 @@
+config SHIELD_LED595_BL
+  def_bool $(shields_list_contains,led595-bl)

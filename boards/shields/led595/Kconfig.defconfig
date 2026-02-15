@@ -1,0 +1,12 @@
+if SHIELD_LED595
+      
+config ZMK_KEYBOARD_NAME  
+    default "led595"
+config SPI
+    default y
+
+# config ZMK_BACKLIGHT
+# select LED
+# select LED_GPIO
+
+endif

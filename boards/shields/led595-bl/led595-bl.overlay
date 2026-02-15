@@ -1,0 +1,58 @@
+#include <dt-bindings/zmk/matrix_transform.h>
+#include <dt-bindings/led/led.h>
+
+&spi3 {
+	status = "okay";
+	cs-gpios = <&pro_micro 1 GPIO_ACTIVE_LOW>;
+	shifter: 595@0 {
+		compatible = "zmk,gpio-595";
+		status = "okay";
+		gpio-controller;
+		spi-max-frequency = <200000>;
+		reg = <0>;
+		#gpio-cells = <2>;
+		ngpios = <8>;
+	};
+};
+
+/ {
+  chosen {
+    zmk,physical-layout = &physical_layout0;
+    zmk,backlight = &backlight;
+  };
+
+  backlight: gpioleds {
+    compatible = "gpio-leds";
+    gpio_led_0 {
+      gpios = <&shifter 1 GPIO_ACTIVE_HIGH>;
+    };
+    gpio_led_1 {
+      gpios = <&shifter 2 GPIO_ACTIVE_HIGH>;
+    };
+  };
+
+  kscan0: kscan0 {
+		compatible = "zmk,kscan-gpio-matrix";
+		diode-direction = "col2row";
+
+    col-gpios
+        = <&shifter 7 GPIO_ACTIVE_HIGH>,
+          <&shifter 0 GPIO_ACTIVE_HIGH>;
+    row-gpios
+        = <&pro_micro 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+  };
+
+  default_transform: keymap_transform_0 {
+		compatible = "zmk,matrix-transform";
+    columns = <2>; // Length of the "col-gpios" array
+    rows = <1>; // Length of the "row-gpios" array
+    map = <RC(0,0) RC(0,1)>;
+  };
+
+  physical_layout0: physical_layout_0 { // First physical layout, use different naming for other layouts
+    compatible = "zmk,physical-layout";
+    display-name = "Default Layout";
+    kscan = <&kscan0>; // Label of the kscan node, optional if all layouts use the same
+    transform = <&default_transform>; // Label of the matrix transform for this layout
+  };
+};

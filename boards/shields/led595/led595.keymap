@@ -1,0 +1,44 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+/ {
+  keymap {
+    compatible = "zmk,keymap";
+    default_layer {
+      bindings = <&to 1 &kp A>;
+    };
+    red_layer {
+      bindings = <&to 2 &kp B>;
+    };
+    green_layer {
+      bindings = <&to 0 &kp C>;
+    };
+  };
+
+  combos {
+    compatible = "zmk,combos";
+    combo_boot { timeout-ms = <50>; key-positions = <0 1>; bindings = <&bootloader>; };
+  };
+  
+  layer_callbacks {
+    compatible = "elpekenin,layer-callback";
+    red_layer_on {
+      layer = <1>;
+      event = "on-activation";
+      bindings = <&gpio_leds 1 GPIO_ON>;
+    };
+
+    red_layer_off {
+      layer = <1>;
+      event = "on-deactivation";
+      bindings = <&gpio_leds 1 GPIO_OFF>;
+    };
+
+    green_layer_on {
+      layer = <2>;
+      event = "on-activation";
+      bindings = <&gpio_leds 2 GPIO_ON>;
+    };
+
+      layer = <2>;
+      event = "on-deactivation";
