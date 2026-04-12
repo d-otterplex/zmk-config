@@ -15,15 +15,16 @@
 #define  BAS_L 0
 #define  NAV_L 1
 #define  NUM_L 2
-#define  SEL_L 3
-#define GONE_L 4
-#define GNUM_L 5
-#define GTOG_L 6
-#define GTWO_L 7
-#define DONE_L 8
-#define DTWO_L 9
-#define DTHR_L 10
-#define  TAP_L 11
+#define  SYM_L 3
+#define  SEL_L 4
+#define GONE_L 5
+#define GNUM_L 6
+#define GTOG_L 7
+#define GTWO_L 8
+#define DONE_L 9
+#define DTWO_L 10
+#define DTHR_L 11
+#define  TAP_L 12
 
 /*
  *  0  1  2  3  4
@@ -100,13 +101,13 @@
     base_layer {
       display-name = "Base";
       bindings = <
-        &kp Q       &kp W       &kp F        &kp P        &kp B
-        &hml LGUI A &hml LALT R &hml LCTRL S &hml LSHFT T &kp G
-        &kp Z       &kp X       &kp C        &kp D        &kp V
+        &kp Q &kp W       &hml LALT  F &hml LCTRL P &hml LSHFT B
+        &kp A &hml LALT R &hml LCTRL S &hml LSHFT T &hml LGUI G
+        &kp Z &kp X       &kp C        &hml LGUI D        &kp V
 
-        &kp J  &kp L        &kp U        &kp Y       &kp QUOT
-        &kp M  &hmr LSHFT N &hmr LCTRL E &hmr LALT I &hmr LGUI O
-        &kp K  &kp H        &kp COMMA    &kp DOT     &kp FSLH
+        &hml LSHFT J &hml LCTRL L &hml LALT  U &hml LGUI Y &kp QUOT
+        &hml LGUI M  &hmr LSHFT N &hmr LCTRL E &hmr LALT I &hmr LGUI O
+        &kp K        &hml LGUI  H &kp COMMA    &kp DOT     &kp FSLH
 
         &none
         &lt NUM_L ESC &lt NAV_L SPACE &kp BKSP
@@ -121,9 +122,9 @@
         &kp  LEFT      &kp  DOWN      &kp  UP      &kp  RIGHT      &none
         &msc SCRL_LEFT &msc SCRL_DOWN &msc SCRL_UP &msc SCRL_RIGHT &kp END
 
-        &kp PG_UP &kp C_VOL_DN &kp C_VOL_UP &kp C_NEXT &kp C_PREV
-        &kp CAPS  &kp LSHFT    &kp LCTRL    &kp LALT   &kp LGUI
-        &kp PG_DN &mkp LCLK    &mkp MCLK    &mkp RCLK  &caps_word
+        &caps_word &kp C_VOL_DN &kp C_VOL_UP &kp C_NEXT &kp C_PREV
+        &kp CAPS   &kp LSHFT    &kp LCTRL    &kp LALT   &kp LGUI
+        &kp PG_DN  &mkp LCLK    &mkp MCLK    &mkp RCLK  &kp PG_UP
 
         &none
         &none &none &kp LS(C_MUTE)
@@ -134,16 +135,33 @@
     number_layer {
       display-name = "Num";
       bindings = <
-        AS(GRAVE) AS(N7) AS(N8) AS(N9) ASI(EQUAL)
-        AS(SEMI)  AS(N4) AS(N5) AS(N6) AS(N0)
-        &kp PSCRN AS(N1) AS(N2) AS(N3) AS(MINUS)
+        &none AS(N7) AS(N8) AS(N9) AS(N0)
+        &none AS(N4) AS(N5) AS(N6) ASI(EQUAL)
+        &none AS(N1) AS(N2) AS(N3) AS(MINUS)
 
-        &none         &kp F7 &kp F8 &kp F9 &kp F10
-        AS(BACKSLASH) &kp F4 &kp F5 &kp F6 &kp F11
-        &none         &kp F1 &kp F2 &kp F3 &kp F12
+        AS(GRAVE) &kp F7 &kp F8 &kp F9 &kp F10
+        AS(SEMI)  &kp F4 &kp F5 &kp F6 &kp F11
+        &kp PSCRN &kp F1 &kp F2 &kp F3 &kp F12
 
         &none
         &none AS(N0) AS(BACKSLASH)
+      >;
+      sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+    };
+
+    symbol_layer {
+      display-name = "Sym";
+      bindings = <
+        &kp PSCRN AS(GRAVE) AS(LBKT) AS(RBKT) AS(SEMI)
+        &none     &none     &none    AS(BSLH) &none
+        &none     &none     &none    &none    &none
+
+        &none &kp LGUI  &kp LALT  &kp LCTRL &kp LSHFT
+        &none &kp LSHFT &kp LCTRL &kp LALT  &kp LGUI
+        &none &none     &none     &none     &none
+
+        &none
+        &none &none &none
       >;
       sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
     };
@@ -177,7 +195,7 @@
         &none       &none    &none    &none     &none
 
         &none
-        &kp LCTL  &kp SPACE &to BAS_L
+        &kp LCTRL &kp SPACE &to BAS_L
       >;
       sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
     };
@@ -194,7 +212,7 @@
         &none       &none    &none    &none     &none
 
         &none
-        &kp LCTL  &kp SPACE &to BAS_L
+        &kp LCTRL &kp SPACE &to BAS_L
       >;
       sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
     };
@@ -211,7 +229,7 @@
         &none &none &none &none &none
 
         &none
-        &kt LCTL  &kt SPACE &to BAS_L
+        &kt LCTRL &kt SPACE &to BAS_L
       >;
       sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
     };
@@ -228,7 +246,7 @@
         &kp B      &none     &none    &none     &none
 
         &none
-        &kp LCTL &kp SPACE &to BAS_L
+        &kp LCTRL &kp SPACE &to BAS_L
       >;
       sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
     };
