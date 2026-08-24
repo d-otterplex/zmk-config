@@ -16,5 +16,20 @@
 #     snippet: studio-rpc-usb-uart
 #     cmake-args: -DCONFIG_ZMK_STUDIO=y
 #     artifact-name: corne_left_with_studio
-#
 ---
+include:
+  - board: seeeduino_xiao_ble
+    shield: v4x
+  - board: seeeduino_xiao_rp2040
+    shield: uniplus
+
+# ```
+# podman run -it --rm \
+#  --security-opt label=disable \
+#  --workdir /workspaces/zmk \
+#  --volume zmk-src:/workspaces/zmk \
+#  --volume zmk-config-int16:/workspaces/zmk-config \
+#  --volume zmk-modules:/workspaces/zmk-modules \
+#   localhost/zmk-devcontainerlatest /bin/bash
+# ```
+# `west build -p -b seeeduino_xiao_rp2040 -- -DSHIELD=uniplus -DZMK_EXTRA_MODULES=/workspaces/zmk-config -DZMK_CONFIG=/workspaces/zmk-config/config`

@@ -1,0 +1,8 @@
+if SHIELD_UNIPLUS
+      
+config ZMK_KEYBOARD_NAME  
+    default "uniplus"
+config SPI
+    default y
+
+endif

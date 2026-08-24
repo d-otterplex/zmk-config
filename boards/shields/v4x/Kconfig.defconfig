@@ -1,0 +1,6 @@
+if SHIELD_V4X
+      
+config ZMK_KEYBOARD_NAME  
+    default "v4x"
+
+endif

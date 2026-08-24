@@ -1,0 +1,76 @@
+ /*
+ * Copyright (c) 2026 D'otter (Rooks)
+ *
+ * SPDX-License-Identifier: MIT
+ */
+#include <behaviors.dtsi>
+
+// Autoshift Macro and Inversion
+#define AS(keycode)  &as LS(keycode) keycode
+#define ASI(keycode) &as keycode LS(keycode)
+
+// MOSL convenience Macro
+#define MOSL(layer) &mosl layer layer
+
+// Using layer taps on thumbs, having quick tap as well helps w/ repeating space/backspace
+&lt { quick-tap-ms = <200>; };
+
+/ {
+  behaviors {
+    hml: hrm_left {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      tapping-term-ms = <200>;
+      quick-tap-ms = <150>;
+      
+      bindings = <&kp>, <&kp>;
+      flavor = "balanced";
+      hold-trigger-on-release;
+      hold-trigger-key-positions = <KEYS_R THUMBS>;
+    };
+    hmr: hrm_right {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      tapping-term-ms = <200>;
+      quick-tap-ms = <150>;
+
+      bindings = <&kp>, <&kp>;
+      flavor = "balanced";
+      hold-trigger-on-release;
+      hold-trigger-key-positions = <KEYS_L THUMBS>;
+    };
+    as: auto_shift {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      tapping-term-ms = <200>;
+      quick-tap-ms = <100>;
+
+      bindings = <&kp>, <&kp>;
+      flavor = "tap-preferred";
+    };
+    ght: game_hold_tap {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      tapping-term-ms = <150>;
+
+      bindings = <&kp>, <&kp>;
+      flavor = "hold-preferred";
+    };
+    glt: game_layer_tap {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      tapping-term-ms = <150>;
+
+      bindings = <&mo>, <&kp>;
+      flavor = "hold-preferred";
+    };
+    mosl: momentary_sticky_layer {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      tapping-term-ms = <150>;
+
+      bindings = <&mo>, <&sl>;
+      flavor = "hold-preferred";
+    };
+  };
+};

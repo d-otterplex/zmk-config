@@ -1,0 +1,8 @@
+file_format: 1
+id: v4x
+name: v4x
+type: shield
+requires:
+  - seeed_xiao
+features:
+  - keys

@@ -1,5 +1,7 @@
 name: Build ZMK firmware
-on: [push, pull_request, workflow_dispatch]
+run-name: '${{ github.ref_name }}: ${{ github.event.head_commit.message || github.event.pull_request.title || github.sha }}'
+on: [pull_request, workflow_dispatch]
+# on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:

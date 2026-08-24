@@ -1,0 +1,70 @@
+ /*
+ * Copyright (c) 2026 D'otter (Rooks)
+ *
+ * SPDX-License-Identifier: MIT
+ */
+#include "behavs.dtsi"
+
+#define COMBO(NAME, KEYBIND, KEYPOS, LAYERS) \
+  combo_##NAME { timeout-ms = <50>; \
+    layers = <LAYERS>; \
+    bindings = KEYBIND; \
+    key-positions = <KEYPOS>; \
+  };
+
+#define B_COMBO(NAME, KEYBIND, KEYPOS) \
+  COMBO(NAME, KEYBIND, KEYPOS, BAS_L)
+
+#define G_COMBOS(NAME, KEYCODE, KEYPOS) \
+  COMBO(game_##NAME,   <&kp KEYCODE>,KEYPOS,GAME_L) \
+  COMBO(game_tg_##NAME,<&kt KEYCODE>,KEYPOS,GTOG_L)
+
+/ {
+  combos {
+    compatible = "zmk,combos";
+
+    COMBO(game_esc, <&kp ESC>,    G_KEYPOS_SFT G_KEYPOS_A,   GAME_L)
+    COMBO(game_tab, <&kp TAB>,    G_KEYPOS_SFT G_KEYPOS_SPC, GAME_L)
+
+    COMBO(game_num, <MOSL(GNUM_L)>, G_KEYPOS_CTL_COMB, GAME_L)
+    COMBO(game_ktg, <MOSL(GTOG_L)>, G_KEYPOS_Z G_KEYPOS_X G_KEYPOS_C,                GAME_L)
+
+    combo_game_s {
+      slow-release;
+      key-positions = <G_KEYPOS_SPC G_KEYPOS_W>; bindings = <&kp S>;
+
+      layers = <GAME_L>; timeout-ms = <50>;
+    };
+
+    combo_game_tg_s {
+      slow-release; 
+      key-positions = <G_KEYPOS_SPC G_KEYPOS_W>; bindings = <&kt S>;
+
+      layers = <GAME_L>; timeout-ms = <50>;
+    };
+
+    G_COMBOS(q, Q,    G_KEYPOS_SPC G_KEYPOS_A)
+    G_COMBOS(e, E,    G_KEYPOS_SPC G_KEYPOS_D)
+
+    G_COMBOS(f, F,    G_KEYPOS_CTL G_KEYPOS_A)
+    G_COMBOS(r, R,    G_KEYPOS_CTL G_KEYPOS_D)
+
+    G_COMBOS(g, G,    G_KEYPOS_CTL G_KEYPOS_A G_KEYPOS_D)
+    G_COMBOS(b, B,    G_KEYPOS_SPC G_KEYPOS_A G_KEYPOS_D)
+
+    G_COMBOS(v, V,    G_KEYPOS_A G_KEYPOS_D)
+    G_COMBOS(la,LALT, G_KEYPOS_SPC_COMB)
+
+#ifdef G_KEYPOS_1
+    COMBO(up1, <&kp N4>, G_KEYPOS_A G_KEYPOS_1, GAME_L)
+    COMBO(up3, <&kp N5>, G_KEYPOS_D G_KEYPOS_3, GAME_L)
+
+    COMBO(up2, <&kp N6>, G_KEYPOS_1 G_KEYPOS_3, GAME_L)
+#endif // G_KEYPOS_1
+
+    COMBO(dn1, <&kp N1>, G_KEYPOS_A G_KEYPOS_Z, GAME_L)
+    COMBO(dn3, <&kp N3>, G_KEYPOS_D G_KEYPOS_C, GAME_L)
+
+    COMBO(dn2, <&kp N2>, G_KEYPOS_Z G_KEYPOS_C, GAME_L)
+  };
+};

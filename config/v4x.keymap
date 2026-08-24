@@ -1,0 +1,204 @@
+/*
+ * Copyright (c) 2024 Rooks
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/pointing.h>
+// #include <dt-bindings/zmk/bt.h>
+// #include <dt-bindings/zmk/outputs.h>
+
+#define AS(keycode) &as LS(keycode) keycode     // Autoshift Macro
+#define ASI(keycode) &as keycode LS(keycode)     // Autoshift Macro inverted
+#define BAS_L 0
+#define NAV_L 1
+#define NUM_L 2
+#define SEL_L 3
+#define GONE_L 4
+#define NCOM_L 5
+#define DONE_L 6
+#define DTWO_L 7
+
+
+/*  0  1  2  3   4
+ *  5  6  7  8   9  10 11 12 13  14
+ * 15 16 17 18  19  20 21 22 23  24
+ * 25 26 27 28  29  30 32 32 33  34
+ *       35 36  37  38 39
+ */
+
+
+
+#define KEYS_L 5  6  7  8  9   15 16 17 18 19  25 26 27 28 29
+#define KEYS_R 10 11 12 13 14  20 21 22 23 24  30 31 32 33 34
+
+#define THUMBS 35 36 37 38 39
+
+// Using layer taps on thumbs, having quick tap as well helps w/ repeating space/backspace
+&lt { quick_tap_ms = <200>; };
+
+// #define BT(n) BT_SEL n
+
+/ {
+    behaviors {
+        hml: hrm_left {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            hold-trigger-key-positions = <KEYS_R THUMBS>;
+            hold-trigger-on-release;
+        };
+        hmr: hrm_right {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            hold-trigger-key-positions = <KEYS_L THUMBS>;
+            hold-trigger-on-release;
+        };
+        as: auto_shift {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "tap-preferred";
+            tapping_term_ms = <200>;
+            quick_tap_ms = <100>;
+        };
+        ght: gamers_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "hold-preferred";
+            tapping_term_ms = <150>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        base_layer {
+            bindings = <
+                       &to BAS_L    &to GONE_L &to DONE_L &kp LC(C) &to BAS_L
+                &kp Q         &kp W         &kp F          &kp P           &kp B       &kp J      &kp L          &kp U          &kp Y         &kp QUOT
+                &hml LGUI A   &hml LALT R   &hml LCTRL S   &hml LSHFT T    &kp G       &kp M      &hmr LSHFT N   &hmr LCTRL E   &hmr LALT I   &hmr LGUI O
+                &kp Z         &kp X         &kp C          &kp D           &kp V       &kp K      &kp H          &kp COMMA      &kp DOT       &kp FSLH
+                &none &lt NUM_L ESC  &lt NAV_L SPACE &kp BKSP        &none
+                >;
+        };
+        navigate_layer {
+            bindings = <
+                &trans &none     &none     &kp C_VOL_DN &kp C_VOL_UP
+                &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &kp HOME     &kp PG_UP    &kp C_MUTE  &kp C_VOL_DN &kp C_VOL_UP &none
+                &kp LEFT       &kp DOWN       &kp UP       &kp RIGHT       &none        &kp CAPS     &kp LSHFT   &kp LCTRL    &kp LALT     &kp LGUI
+                &msc SCRL_LEFT &msc SCRL_DOWN &msc SCRL_UP &msc SCRL_RIGHT &kp END      &kp PG_DN    &mkp LCLK &mkp MCLK &mkp RCLK &caps_word
+                                              &trans       &trans          &trans &mkp LCLK &mkp RCLK
+                >;
+        };
+
+        number_layer {
+            bindings = <
+                &trans &trans &trans &trans &trans
+                AS(GRAVE) AS(N7) AS(N8) AS(N9) ASI(EQUAL) &none         &kp F7 &kp F8 &kp F9 &kp F10
+                AS(SEMI)  AS(N4) AS(N5) AS(N6) AS(N0)     AS(BACKSLASH) &kp F4 &kp F5 &kp F6 &kp F11
+                &kp PSCRN AS(N1) AS(N2) AS(N3) AS(MINUS)  &none         &kp F1 &kp F2 &kp F3 &kp F12
+                    &trans &trans &trans &trans &trans
+                >;
+        };
+
+        game_l_selection_layer {
+            bindings = <
+                &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &none  &none  &to GONE_L  &to DONE_L  &none  &none  &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans
+                >;
+        };
+
+        gaming_layer {
+            bindings = <
+                &to BAS_L &none &bootloader &none &none
+                &kp N1 &kp N2 &kp N3 &kp N4 &kp N5 &none &none &kp UP &none &none
+                &kp TAB &kp Q &kp W &kp E &none &none &kp LEFT &kp DOWN &kp RIGHT &none
+                &kp LSHFT &kp A &kp S &kp D &none &none &none &none &none &to NCOM_L
+                &none &kp LCTL &kp SPACE &none &to BAS_L
+                >;
+        };
+
+        gaming_noncombo_layer {
+            bindings = <
+                &trans &trans &trans &trans &trans
+                &kp TAB    &kp Q &kp W &kp E &kp R &kp T &none &kp UP &none &to GONE_L
+                &kp LSHIFT &kp A &kp S &kp D &kp F &kp G &kp LEFT &kp DOWN &kp RIGHT &none
+                &kp ESC    &kp Z &kp X &kp C &kp V &kp B &none &none &none &none
+                &none &kp LCTL &kp SPACE &none &to BAS_L
+                >;
+        };
+
+        diablo_layer {
+            bindings = <
+                &none &none &none &none &none
+                &kp N1 &kp N2 &kp N3 &kp N4                     &none  &none  &none  &none  &none  &none
+                &ght N9 N5 &ght N0 N6 &ght EQUAL N7 &ght INS N8 &trans &trans &trans &trans &trans &trans
+                &kp Q &kp W &kp E &kp R &none &kp O &kp P &kp H &kp KP_NUM &kp RET
+                &none &lt DTWO_L ESC &kp LSHFT &none &to BAS_L
+                >;
+        };
+
+        diablo_ii_layer {
+            bindings = <
+                &trans &trans &trans &trans &trans
+                &ght N9 N5 &ght N0 N6 &ght EQUAL N7 &ght INS N8 &trans &trans &trans &trans &trans &trans
+                &kp LCTRL &kp KP_NUM &kp KP_N0 &kp KP_N3 &none  &none &none &none &none &none
+                &kp LS(Q) &kp I &kp X &kp C &none               &kp Z &kp J &none &kp KP_N0 &kp KP_N3
+                &trans &trans &kp GRAVE &trans &trans
+                >;
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+        combo_boot { timeout-ms = <50>; key-positions = <5 14 25 34>; bindings = <&bootloader>; };
+        combo_ret  { timeout-ms = <50>; key-positions = <30 38>; bindings = <&kp RET>; layers = <BAS_L>; };
+        combo_del { timeout-ms = <50>; key-positions = <21 23>; bindings = <&kp DEL>; layers = <BAS_L>; };
+        combo_tab  { timeout-ms = <50>; key-positions = <16 18>; bindings = <&kp TAB>; layers = <BAS_L>; };
+
+        combo_paren_l   { timeout-ms = <50>; key-positions = <18 28>; bindings = <&kp LPAR>; layers = <BAS_L>; };
+        combo_paren_r   { timeout-ms = <50>; key-positions = <21 31>; bindings = <&kp RPAR>; layers = <BAS_L>; };
+        combo_bracket_l { timeout-ms = <50>; key-positions = <17 27>; bindings = <&kp LBKT>; layers = <BAS_L>; };
+        combo_bracket_r { timeout-ms = <50>; key-positions = <22 32>; bindings = <&kp RBKT>; layers = <BAS_L>; };
+        combo_brace_l   { timeout-ms = <50>; key-positions = <16 26>; bindings = <&kp LBRC>; layers = <BAS_L>; };
+        combo_brace_r   { timeout-ms = <50>; key-positions = <23 33>; bindings = <&kp RBRC>; layers = <BAS_L>; };
+        combo_angle_l   { timeout-ms = <50>; key-positions = <15 25>; bindings = <&kp LT>; layers = <BAS_L>; };
+        combo_angle_r   { timeout-ms = <50>; key-positions = <24 34>; bindings = <&kp GT>; layers = <BAS_L>; };
+
+        combo_select    { timeout-ms = <50>; key-positions = <36 37>; bindings = <&mo SEL_L>; layers = <BAS_L>; };
+
+        combo_game_esc  { timeout-ms = <50>; key-positions = <15 16>; bindings = <&kp ESC>; layers = <GONE_L>; };
+        combo_game_b    { timeout-ms = <50>; key-positions = <16 18>; bindings = <&kp B>; layers = <GONE_L>; };
+        combo_game_g    { timeout-ms = <50>; key-positions = <16 17>; bindings = <&kp G>; layers = <GONE_L>; };
+        combo_game_r    { timeout-ms = <50>; key-positions = <17 18>; bindings = <&kp R>; layers = <GONE_L>; };
+        combo_game_z    { timeout-ms = <50>; key-positions = <26 27>; bindings = <&kp Z>; layers = <GONE_L>; };
+        combo_game_x    { timeout-ms = <50>; key-positions = <27 28>; bindings = <&kp X>; layers = <GONE_L>; };
+        combo_game_v    { timeout-ms = <50>; key-positions = <17 28>; bindings = <&kp V>; layers = <GONE_L>; };
+        combo_game_lalt { timeout-ms = <50>; key-positions = <28 36>; bindings = <&kp LALT>; layers = <GONE_L>; };
+        combo_game_f    { timeout-ms = <50>; key-positions = <18 28>; bindings = <&kp F>; layers = <GONE_L>; };
+    };
+
+/*  0  1  2  3  4
+ *  5  6  7  8  9   10 11 12 13 14
+ * 15 16 17 18 19   20 21 22 23 24
+ * 25 26 27 28 29   30 31 32 33 34
+ *       35 36 37   38 39
+ */
+
+};
+
+// vim: ft=c

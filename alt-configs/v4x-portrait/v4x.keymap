@@ -1,0 +1,166 @@
+/*
+ * Copyright (c) 2024 Rooks
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+#define BASE_L 0
+#define NUMB_L 1
+#define TOGG_L 2
+
+// upper pad quickies
+#define NON_PAD &none&none&none    &none&none&none      &none&none&none     &none&none&none &none
+#define DIR_PAD &none&kp RIGHT&none &kp UP&kp DOWN&none  &none&kp LEFT&none  &none&none&none &none
+
+#define COMBO(NAME, KEYBIND, KEYPOS, LAYERS) \
+  combo_##NAME { timeout-ms = <50>; \
+    layers = <LAYERS>; \
+    bindings = KEYBIND; \
+    key-positions = <KEYPOS>; \
+  };
+
+#define G_COMBOS(NAME, KEYCODE, KEYPOS) \
+  COMBO(game_##NAME,   <&kp KEYCODE>,KEYPOS,BASE_L) \
+  COMBO(game_tg_##NAME,<&kt KEYCODE>,KEYPOS,TOGG_L)
+
+
+// MOSL convenience Macro
+#define MOSL(layer) &mosl layer layer
+
+// Autoshift macros
+#define AS(keycode) &as LS(keycode) keycode
+#define ASI(keycode) &as keycode LS(keycode)
+
+// Using layer taps on thumbs, having quick tap as well helps w/ repeating space/backspace
+&lt { quick_tap_ms = <200>; };
+
+/ {
+ chosen {
+  zmk,matrix-transform = &portrait_transform; 
+ };
+ behaviors {
+  as: auto_shift {
+   compatible = "zmk,behavior-hold-tap";
+   #binding-cells = <2>;
+   tapping_term_ms = <200>; quick_tap_ms = <100>;
+
+   bindings = <&kp>, <&kp>;
+   flavor = "tap-preferred";
+  };
+  mosl: momentary_sticky_layer {
+   compatible = "zmk,behavior-hold-tap";
+   #binding-cells = <2>;
+   tapping-term-ms = <150>;
+
+   bindings = <&mo>, <&sl>;
+   flavor = "hold-preferred";
+  };
+//glt: gamers_layer_tap {
+// compatible = "zmk,behavior-hold-tap";
+// #binding-cells = <2>;
+// tapping_term_ms = <150>;
+
+// bindings = <&mo>, <&kp>;
+// flavor = "hold-preferred";
+//};
+ };
+
+ keymap {
+  compatible = "zmk,keymap";
+
+  base_layer {
+   bindings = <
+    &none&none&none&none&none             
+    &kp N1 &kp N2 &kp N3 &kp GRAVE ASI(C_MUTE)
+    &kp A  &kp W  &kp D  &kp LSHFT &kp C_VOL_UP
+    &kp Z  &kp X  &kp C  &kp LS(TAB)   &kp C_VOL_DN
+   ASI(C_MUTE) &none&none&none
+         &none &kp LCTRL &kp SPACE
+
+     DIR_PAD
+   >;
+  };
+
+  number_layer {
+   bindings = <
+    &none&none&none&none&none             
+    &kp N4 &kp N5 &kp N6 &kp GRAVE ASI(C_MUTE)
+    &kp N7 &kp N8 &kp N9 &kp LSHFT &kp C_VOL_UP
+    &kp N1 &kp N2 &kp N3 &kp LS(TAB)   &kp C_VOL_DN
+   ASI(C_MUTE) &none&none&none
+         &none &kp LCTRL &kp SPACE
+
+     DIR_PAD
+   >;
+ };
+
+  toggle_layer {
+   bindings = <
+    &none&none&none&none&none             
+    &none&none&none&none ASI(C_MUTE)
+    &kt A  &kt W  &kt D  &kt LSHFT &kp C_VOL_UP
+    &kt Z  &kt X  &kt C  &kp LS(TAB)   &kp C_VOL_DN
+   ASI(C_MUTE) &none&none&none
+         &none &kt LCTRL &kt SPACE
+
+     DIR_PAD
+   >;
+  };
+
+/*  0  1  2  3  4
+    5  6  7  8  9
+   10 11 12 13 14
+   15 16 17 18 19
+   20 21 22 23
+      24 25 26
+
+      27 28 29
+      30 32 32
+      33 34 35
+      36 37 38 39
+ */
+
+ };
+ combos {
+  compatible = "zmk,combos";
+  combo_boot_land { timeout-ms = <50>; key-positions = <24 26 27 29>; bindings = <&bootloader>; };
+  combo_boot_port { timeout-ms = <50>; key-positions = <0 39 20 19>; bindings = <&bootloader>; };
+
+  combo_game_s {
+   key-positions = <11 26>; bindings = <&kp S>;
+   layers = <BASE_L>; timeout-ms = <50>; slow-release;
+  };
+
+  combo_game_tg_s {
+   key-positions = <11 26>; bindings = <&kt S>;
+   layers = <TOGG_L>; timeout-ms = <50>;
+  };
+// numbers
+  COMBO(up4,  <&kp N4>,  10 5,BASE_L)
+  COMBO(dn4,  <&kp N4>,  10 15,BASE_L)
+  COMBO(up5,  <&kp N5>,  12 7,BASE_L)
+  COMBO(dn5,  <&kp N5>,  12 17,BASE_L)
+
+G_COMBOS(q, Q, 10 26)
+G_COMBOS(e, E, 12 26)
+
+G_COMBOS(f, F, 10 25)
+G_COMBOS(r, R, 12 25)
+
+G_COMBOS(g, G, 10 12 25)
+G_COMBOS(b, B, 10 12 26)
+
+G_COMBOS(v, V, 10 12)
+
+G_COMBOS(la, LALT, 23 26)
+G_COMBOS(tab, TAB, 13 26)
+
+//COMBO(caps, <&kp CAPS>, 12 13,BASE_L)
+  COMBO(esc,  <&kp ESC>,  12 13,BASE_L)
+  COMBO(ms_num,<MOSL(NUMB_L)>,22 25, BASE_L)
+  COMBO(ms_tog,<MOSL(TOGG_L)>,15 16 17, BASE_L)
+ };
+};
